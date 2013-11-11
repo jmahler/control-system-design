@@ -1,0 +1,299 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>ss51</title><meta name="generator" content="DocBook XSL Stylesheets V1.75.2"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div lang="en" class="book" title="ss51"><div class="titlepage"><div><div><h1 class="title"><a name="d15e1"></a>ss51</h1></div><div><h2 class="subtitle"></h2></div><div><div class="mediaobject"><map name="d15e13"><area coords="89,168,139,204" shape="rect" href="#4471ac80945cc0854c9bbe8cbc72eacb"><area coords="89,428,139,464" shape="rect" href="#9d9a6d25bbf54eb9df1e227c44544a6a"><area coords="139,64,199,98" shape="rect" href="#a03d35d545edce1ed729c82d328b2856"><area coords="139,324,199,358" shape="rect" href="#52d19bc6ca7817aa2f8090449ec8d13c"><area coords="414,186,449,216" shape="rect" href="#00141442bcc8a5ce55dc114faa86fd80"><area coords="419,456,454,486" shape="rect" href="#806f881e8b8fc6f769e1334d0a07d30b"><area coords="54,66,89,96" shape="rect" href="#d0d8727e6c1b2f54d3ebb058a9187eae"><area coords="54,326,89,356" shape="rect" href="#0b9e3d5fd4d6df812ccd2bd14a7bcc08"><area coords="284,103,334,139" shape="rect" href="#8bbbd7839b0be19a8c357640fc92f23d"><area coords="284,383,334,419" shape="rect" href="#c6d3a5e065a4b0a0203069650e263687"></map><img src="./ss51_html_files/image-001-sl.png" usemap="%0A                #d15e13" ismap="" border="0"></div></div><div><div class="author"><h3 class="author"><span class="firstname">jmahler
+ </span></h3></div></div><div><p class="pubdate">11-Nov-2013 09:52:41</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#d15e30">Model - ss51</a></span></dt><dt><span class="chapter"><a href="#d15e113">System - ss51</a></span></dt><dt><span class="chapter"><a href="#d15e491">Appendix</a></span></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1. <a href="#d15e135">Gain Block Properties</a></dt><dt>2. <a href="#d15e286">StateSpace Block Properties</a></dt><dt>3. <a href="#d15e381">ToWorkspace Block Properties</a></dt><dt>4. <a href="#d15e456">ZeroOrderHold Block Properties</a></dt><dt>5. <a href="#d15e496">Block Type Count</a></dt><dt>6. <a href="#d15e606">Model Variables</a></dt></dl></div><div class="chapter" title="Model - ss51"><div class="titlepage"><div><div><h2 class="title"><a name="d15e30"></a>Model - ss51</h2></div></div></div><a name="d16f57ef7491c175adf7dc0b34a7ace7"></a><div class="orderedlist" title="Full Model Hierarchy"><p class="title"><b>Full Model Hierarchy</b></p><ol class="orderedlist" type="1" compact><li class="listitem">
+            <a class="link" href="#d16f57ef7491c175adf7dc0b34a7ace7">ss51</a>
+        </li></ol></div><a name="d15e44"></a><div class="table"><div class="table-contents"><table summary="" border="1" cellspacing="0" fastRender="1" width="100%"><col width="9000*"><col width="30000*"><thead><tr>
+            <th align="left">Simulation Parameter</th>
+            <th align="left">Value</th>
+        </tr></thead><tbody><tr>
+            <td align="left">Solver</td>
+            <td align="left">ode45</td>
+        </tr><tr>
+            <td align="left">RelTol</td>
+            <td align="left">1e-3</td>
+        </tr><tr>
+            <td align="left">Refine</td>
+            <td align="left">1</td>
+        </tr><tr>
+            <td align="left">MaxOrder</td>
+            <td align="left">5</td>
+        </tr><tr>
+            <td align="left">FixedStep</td>
+            <td align="left">T</td>
+        </tr><tr>
+            <td align="left">ZeroCross</td>
+            <td align="left">on</td>
+        </tr></tbody></table></div></div><p>
+    <a class="link" href="#appendix-sl">
+        <span class="emphasis"><em>[more info]</em></span>
+    </a>
+</p></div><div class="chapter" title="System - ss51"><div class="titlepage"><div><div><h2 class="title"><a name="d15e113"></a>System - ss51</h2></div></div></div><a name="55891d07db05540a5542ae5fb9a2f7e3"></a><div class="mediaobject"><map name="d15e120"><area coords="89,168,139,204" shape="rect" href="#4471ac80945cc0854c9bbe8cbc72eacb"><area coords="89,428,139,464" shape="rect" href="#9d9a6d25bbf54eb9df1e227c44544a6a"><area coords="139,64,199,98" shape="rect" href="#a03d35d545edce1ed729c82d328b2856"><area coords="139,324,199,358" shape="rect" href="#52d19bc6ca7817aa2f8090449ec8d13c"><area coords="414,186,449,216" shape="rect" href="#00141442bcc8a5ce55dc114faa86fd80"><area coords="419,456,454,486" shape="rect" href="#806f881e8b8fc6f769e1334d0a07d30b"><area coords="54,66,89,96" shape="rect" href="#d0d8727e6c1b2f54d3ebb058a9187eae"><area coords="54,326,89,356" shape="rect" href="#0b9e3d5fd4d6df812ccd2bd14a7bcc08"><area coords="284,103,334,139" shape="rect" href="#8bbbd7839b0be19a8c357640fc92f23d"><area coords="284,383,334,419" shape="rect" href="#c6d3a5e065a4b0a0203069650e263687"></map><img src="./ss51_html_files/image-005-sl.png" usemap="%0A                #d15e120" ismap="" border="0"></div><a name="d15e135"></a><div class="table"><p class="title"><b>Table&nbsp;1.&nbsp;Gain Block Properties</b></p><div class="table-contents"><table summary="Gain Block Properties" border="1" cellspacing="0" fastRender="1" width="100%"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><thead><tr>
+            <th align="left">Name</th>
+            <th align="left">Gain</th>
+            <th align="left">Multiplication</th>
+            <th align="left">Param Data Type Str</th>
+            <th align="left">Out Data Type Str</th>
+            <th align="left">Lock Scale</th>
+            <th align="left">Rnd Meth</th>
+            <th align="left">Saturate On Integer Overflow</th>
+        </tr></thead><tbody><tr>
+            <td align="left">
+                <a name="4471ac80945cc0854c9bbe8cbc72eacb"></a>Gain</td>
+            <td align="left">-K1</td>
+            <td align="left">Matrix(K*u)</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">off</td>
+            <td align="left">Floor</td>
+            <td align="left">off</td>
+        </tr><tr>
+            <td align="left">
+                <a name="9d9a6d25bbf54eb9df1e227c44544a6a"></a>Gain1</td>
+            <td align="left">-K2</td>
+            <td align="left">Matrix(K*u)</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">off</td>
+            <td align="left">Floor</td>
+            <td align="left">off</td>
+        </tr><tr>
+            <td align="left">
+                <a name="8bbbd7839b0be19a8c357640fc92f23d"></a>select1</td>
+            <td align="left">[1 0 0 0]</td>
+            <td align="left">Matrix(K*u)</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">off</td>
+            <td align="left">Floor</td>
+            <td align="left">off</td>
+        </tr><tr>
+            <td align="left">
+                <a name="c6d3a5e065a4b0a0203069650e263687"></a>select2</td>
+            <td align="left">[1 0 0 0]</td>
+            <td align="left">Matrix(K*u)</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">Inherit: Inherit via internal rule</td>
+            <td align="left">off</td>
+            <td align="left">Floor</td>
+            <td align="left">off</td>
+        </tr></tbody></table></div></div><a name="d15e286"></a><div class="table"><p class="title"><b>Table&nbsp;2.&nbsp;StateSpace Block Properties</b></p><div class="table-contents"><table summary="StateSpace Block Properties" border="1" cellspacing="0" fastRender="1" width="100%"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><thead><tr>
+            <th align="left">Name</th>
+            <th align="left">A</th>
+            <th align="left">B</th>
+            <th align="left">C</th>
+            <th align="left">D</th>
+            <th align="left">X0</th>
+            <th align="left">Absolute Tolerance</th>
+            <th align="left">Continuous State Attributes</th>
+        </tr></thead><tbody><tr>
+            <td align="left">
+                <a name="a03d35d545edce1ed729c82d328b2856"></a>State-Space1</td>
+            <td align="left">A</td>
+            <td align="left">B</td>
+            <td align="left">C</td>
+            <td align="left">D</td>
+            <td align="left">x1</td>
+            <td align="left">auto</td>
+            <td align="left">''</td>
+        </tr><tr>
+            <td align="left">
+                <a name="52d19bc6ca7817aa2f8090449ec8d13c"></a>State-Space2</td>
+            <td align="left">A</td>
+            <td align="left">B</td>
+            <td align="left">C</td>
+            <td align="left">D</td>
+            <td align="left">x1</td>
+            <td align="left">auto</td>
+            <td align="left">''</td>
+        </tr></tbody></table></div></div><a name="d15e381"></a><div class="table"><p class="title"><b>Table&nbsp;3.&nbsp;ToWorkspace Block Properties</b></p><div class="table-contents"><table summary="ToWorkspace Block Properties" border="1" cellspacing="0" fastRender="1" width="100%"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><col width="60*"><thead><tr>
+            <th align="left">Name</th>
+            <th align="left">Variable Name</th>
+            <th align="left">Max Data Points</th>
+            <th align="left">Decimation</th>
+            <th align="left">Save Format</th>
+            <th align="left">Fixpt As Fi</th>
+        </tr></thead><tbody><tr>
+            <td align="left">
+                <a name="00141442bcc8a5ce55dc114faa86fd80"></a>To Workspace</td>
+            <td align="left">d1</td>
+            <td align="left">inf</td>
+            <td align="left">1</td>
+            <td align="left">Timeseries</td>
+            <td align="left">off</td>
+        </tr><tr>
+            <td align="left">
+                <a name="806f881e8b8fc6f769e1334d0a07d30b"></a>To Workspace1</td>
+            <td align="left">d2</td>
+            <td align="left">inf</td>
+            <td align="left">1</td>
+            <td align="left">Timeseries</td>
+            <td align="left">off</td>
+        </tr></tbody></table></div></div><a name="d15e456"></a><div class="table"><p class="title"><b>Table&nbsp;4.&nbsp;ZeroOrderHold Block Properties</b></p><div class="table-contents"><table summary="ZeroOrderHold Block Properties" border="1" cellspacing="0" fastRender="1" width="100%"><col width="60*"><col width="60*"><thead><tr>
+            <th align="left">Name</th>
+            <th align="left">Sample Time</th>
+        </tr></thead><tbody><tr>
+            <td align="left">
+                <a name="d0d8727e6c1b2f54d3ebb058a9187eae"></a>Zero-Order Hold</td>
+            <td align="left">T</td>
+        </tr><tr>
+            <td align="left">
+                <a name="0b9e3d5fd4d6df812ccd2bd14a7bcc08"></a>Zero-Order Hold1</td>
+            <td align="left">T</td>
+        </tr></tbody></table></div></div></div><div class="chapter" title="Appendix"><div class="titlepage"><div><div><h2 class="title"><a name="d15e491"></a>Appendix</h2></div></div></div><a name="appendix-sl"></a><a name="d15e496"></a><div class="table"><p class="title"><b>Table&nbsp;5.&nbsp;Block Type Count</b></p><div class="table-contents"><table summary="Block Type Count" border="1" cellspacing="0" fastRender="1" width="100%"><col width="120*"><col width="60*"><col width="240*"><thead><tr>
+            <th align="left">BlockType</th>
+            <th align="left">Count</th>
+            <th align="left">Block Names</th>
+        </tr></thead><tbody><tr>
+            <td align="left">Gain</td>
+            <td align="left">4</td>
+            <td align="left">
+                <a class="link" href="#4471ac80945cc0854c9bbe8cbc72eacb">Gain</a>, <a class="link" href="#9d9a6d25bbf54eb9df1e227c44544a6a">Gain1</a>, <a class="link" href="#8bbbd7839b0be19a8c357640fc92f23d">select1</a>, <a class="link" href="#c6d3a5e065a4b0a0203069650e263687">select2</a>
+            </td>
+        </tr><tr>
+            <td align="left">ZeroOrderHold</td>
+            <td align="left">2</td>
+            <td align="left">
+                <a class="link" href="#d0d8727e6c1b2f54d3ebb058a9187eae">Zero-Order Hold</a>, <a class="link" href="#0b9e3d5fd4d6df812ccd2bd14a7bcc08">Zero-Order Hold1</a>
+            </td>
+        </tr><tr>
+            <td align="left">ToWorkspace</td>
+            <td align="left">2</td>
+            <td align="left">
+                <a class="link" href="#00141442bcc8a5ce55dc114faa86fd80">To Workspace</a>, <a class="link" href="#806f881e8b8fc6f769e1334d0a07d30b">To Workspace1</a>
+            </td>
+        </tr><tr>
+            <td align="left">StateSpace</td>
+            <td align="left">2</td>
+            <td align="left">
+                <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>, <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+            </td>
+        </tr><tr>
+            <td align="left">Scope</td>
+            <td align="left">2</td>
+            <td align="left">
+                Scope1, Scope2
+            </td>
+        </tr></tbody></table></div></div><a name="d15e606"></a><div class="table"><p class="title"><b>Table&nbsp;6.&nbsp;Model Variables</b></p><div class="table-contents"><table summary="Model Variables" border="1" cellspacing="0" fastRender="1" width="100%"><col width="60*"><col width="180*"><col width="120*"><col width="120*"><thead><tr>
+            <th align="left">Variable Name</th>
+            <th align="left">Parent Blocks</th>
+            <th align="left">Calling string</th>
+            <th align="left">Value</th>
+        </tr></thead><tbody><tr>
+            <td align="left">A</td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">A</code>
+                    </td></tr><tr><td>
+                        <code class="computeroutput">A</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>[    0           0           1           0 ;</td></tr><tr><td>     0           0           0           1 ;</td></tr><tr><td> -0.91        0.91      -0.036       0.036 ;</td></tr><tr><td> 0.091      -0.091      0.0036     -0.0036 ] </td></tr></table>
+            </td>
+        </tr><tr>
+            <td align="left">B</td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">B</code>
+                    </td></tr><tr><td>
+                        <code class="computeroutput">B</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>[0 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 1 ] </td></tr></table>
+            </td>
+        </tr><tr>
+            <td align="left">C</td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">C</code>
+                    </td></tr><tr><td>
+                        <code class="computeroutput">C</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>[1  0  0  0 ;</td></tr><tr><td> 0  1  0  0 ;</td></tr><tr><td> 0  0  1  0 ;</td></tr><tr><td> 0  0  0  1 ] </td></tr></table>
+            </td>
+        </tr><tr>
+            <td align="left">D</td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">D</code>
+                    </td></tr><tr><td>
+                        <code class="computeroutput">D</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>[0 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 0 ] </td></tr></table>
+            </td>
+        </tr><tr>
+            <td align="left">K1</td>
+            <td align="left">
+                <a class="link" href="#4471ac80945cc0854c9bbe8cbc72eacb">Gain</a>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">-K1</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">[0.64973    -0.64535    -0.65049     0.71784 ] </td>
+        </tr><tr>
+            <td align="left">K2</td>
+            <td align="left">
+                <a class="link" href="#9d9a6d25bbf54eb9df1e227c44544a6a">Gain1</a>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">-K2</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">[-0.4579     0.56752    -0.24857     0.96768 ] </td>
+        </tr><tr>
+            <td align="left">x1</td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <a class="link" href="#a03d35d545edce1ed729c82d328b2856">State-Space1</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="#52d19bc6ca7817aa2f8090449ec8d13c">State-Space2</a>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                        <code class="computeroutput">x1</code>
+                    </td></tr><tr><td>
+                        <code class="computeroutput">x1</code>
+                    </td></tr></table>
+            </td>
+            <td align="left">
+                <table border="0" summary="Simple list" class="simplelist"><tr><td>[1 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 0 ;</td></tr><tr><td> 0 ] </td></tr></table>
+            </td>
+        </tr></tbody></table></div></div><a name="appendix-sf"></a></div></div></body></html>
