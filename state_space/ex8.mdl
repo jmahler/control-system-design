@@ -1,12 +1,12 @@
 Model {
-  Name			  "ss51"
+  Name			  "ex8"
   Version		  8.1
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.51"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [535.0, 16.0, 963.0, 757.0]
+      Location		      [237.0, 8.0, 976.0, 784.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -39,7 +39,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[8]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -54,21 +54,21 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[724.0, 597.0]
+	Extents			[737.0, 624.0]
 	ZoomFactor		[1.0]
-	Offset			[77.0, 273.83750286698341]
+	Offset			[0.0, 20.0]
       }
     }
   }
-  Created		  "Sat Nov 09 13:43:41 2013"
+  Created		  "Mon Nov 11 23:46:38 2013"
   Creator		  "jmahler"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jmahler"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 12 00:01:36 2013"
-  RTWModifiedTimeStamp	  306115294
-  ModelVersionFormat	  "1.%<AutoIncrement:51>"
+  LastModifiedDate	  "Tue Nov 12 01:56:41 2013"
+  RTWModifiedTimeStamp	  306122138
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -105,12 +105,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "ss51"
-    overrideMode_	    [0.0]
+    model_		    "ex8"
+    overrideMode_	    [0U]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "ss51"
+      Cell		      "ex8"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -171,9 +171,9 @@ Model {
 	  $ObjectID		  8
 	  Version		  "1.13.0"
 	  StartTime		  "0.0"
-	  StopTime		  "50"
+	  StopTime		  "10.0"
 	  AbsTol		  "auto"
-	  FixedStep		  "T"
+	  FixedStep		  "auto"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -675,7 +675,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 250, 20, 1350, 785 ] 
+      ConfigPrmDlgPosition     [ 270, 135, 1330, 765 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -790,35 +790,10 @@ Model {
       SampleInput	      off
       SampleTime	      "-1"
     }
-    Block {
-      BlockType		      StateSpace
-      A			      "1"
-      B			      "1"
-      C			      "1"
-      D			      "1"
-      X0		      "0"
-      AbsoluteTolerance	      "auto"
-      ContinuousStateAttributes	"''"
-      Realization	      "auto"
-    }
-    Block {
-      BlockType		      ToWorkspace
-      VariableName	      "simulink_output"
-      MaxDataPoints	      "1000"
-      Decimation	      "1"
-      SampleTime	      "0"
-      SaveFormat	      "Array"
-      FixptAsFi		      off
-      NumInputs		      "1"
-    }
-    Block {
-      BlockType		      ZeroOrderHold
-      SampleTime	      "1"
-    }
   }
   System {
-    Name		    "ss51"
-    Location		    [535, 16, 1498, 773]
+    Name		    "ex8"
+    Location		    [237, 8, 1213, 792]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -832,69 +807,76 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "38"
+    SIDHighWatermark	    "14"
     Block {
       BlockType		      DiscreteStateSpace
       Name		      "Discrete State-Space"
-      SID		      "38"
-      Position		      [300, 676, 410, 714]
-      ZOrder		      43
+      SID		      "6"
+      Position		      [220, 161, 330, 199]
+      ZOrder		      44
       A			      "Phi"
-      B			      "Gamma"
-      C			      "H"
-      D			      "G"
+      B			      "Gam"
+      C			      "eye(2)"
+      D			      "[0; 0]"
       X0		      "x1"
       SampleTime	      "T"
+      Port {
+	PortNumber		1
+	Name			"x"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      Gain
       Name		      "Gain"
-      SID		      "1"
-      Position		      [305, 257, 355, 293]
-      ZOrder		      16
+      SID		      "2"
+      Position		      [250, 272, 300, 308]
+      ZOrder		      22
       BlockMirror	      on
-      Gain		      "-K1"
+      Gain		      "-K"
       Multiplication	      "Matrix(K*u)"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+      SampleTime	      "T"
+      Port {
+	PortNumber		1
+	Name			"u"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      Gain
       Name		      "Gain1"
-      SID		      "16"
-      Position		      [305, 517, 355, 553]
-      ZOrder		      29
+      SID		      "11"
+      Position		      [165, 542, 215, 578]
+      ZOrder		      46
       BlockMirror	      on
-      Gain		      "-K2"
+      Gain		      "-K"
       Multiplication	      "Matrix(K*u)"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "Gain2"
-      SID		      "29"
-      Position		      [360, 782, 410, 818]
-      ZOrder		      37
-      BlockMirror	      on
-      Gain		      "-K2"
-      Multiplication	      "Matrix(K*u)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
+      SampleTime	      "T"
+      Port {
+	PortNumber		1
+	Name			"u"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      Scope
       Name		      "Scope1"
-      SID		      "2"
+      SID		      "3"
       Ports		      [1]
-      Position		      [635, 194, 665, 226]
-      ZOrder		      14
+      Position		      [460, 214, 490, 246]
+      ZOrder		      20
       Floating		      off
-      Location		      [784, 136, 1557, 669]
-      Open		      off
+      Location		      [1233, 367, 1557, 606]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -917,13 +899,13 @@ Model {
     Block {
       BlockType		      Scope
       Name		      "Scope2"
-      SID		      "24"
+      SID		      "12"
       Ports		      [1]
-      Position		      [635, 474, 665, 506]
-      ZOrder		      33
+      Position		      [460, 474, 490, 506]
+      ZOrder		      45
       Floating		      off
-      Location		      [784, 136, 1557, 669]
-      Open		      off
+      Location		      [1236, 68, 1560, 307]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -945,299 +927,129 @@ Model {
       SampleTime	      "0"
     }
     Block {
-      BlockType		      Scope
-      Name		      "Scope3"
-      SID		      "30"
-      Ports		      [1]
-      Position		      [635, 739, 665, 771]
-      ZOrder		      40
-      Floating		      off
-      Location		      [784, 136, 1557, 669]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      SaveName		      "ScopeData2"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      StateSpace
-      Name		      "State-Space1"
-      SID		      "3"
-      Position		      [355, 153, 415, 187]
-      ZOrder		      15
-      A			      "A"
-      B			      "B"
-      C			      "C"
-      D			      "D"
+      BlockType		      DiscreteStateSpace
+      Name		      "estimator"
+      SID		      "13"
+      Position		      [280, 541, 390, 579]
+      ZOrder		      48
+      BlockMirror	      on
+      A			      "(Phi - Gam*K - Lp*H)"
+      B			      "Lp"
+      C			      "eye(2)"
+      D			      "[0; 0]"
       X0		      "x1"
+      SampleTime	      "T"
+      Port {
+	PortNumber		1
+	Name			"x"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
-      BlockType		      StateSpace
-      Name		      "State-Space2"
-      SID		      "18"
-      Position		      [355, 413, 415, 447]
-      ZOrder		      28
-      A			      "A"
-      B			      "B"
-      C			      "C"
-      D			      "D"
+      BlockType		      DiscreteStateSpace
+      Name		      "system"
+      SID		      "10"
+      Position		      [245, 421, 355, 459]
+      ZOrder		      47
+      A			      "Phi"
+      B			      "Gam"
+      C			      "H"
+      D			      "[0]"
       X0		      "x1"
-    }
-    Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace"
-      SID		      "27"
-      Ports		      [1]
-      Position		      [630, 275, 665, 305]
-      ZOrder		      34
-      VariableName	      "d1"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Timeseries"
-    }
-    Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace1"
-      SID		      "28"
-      Ports		      [1]
-      Position		      [635, 545, 670, 575]
-      ZOrder		      35
-      VariableName	      "d2"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Timeseries"
-    }
-    Block {
-      BlockType		      ZeroOrderHold
-      Name		      "Zero-Order\nHold"
-      SID		      "4"
-      Position		      [270, 155, 305, 185]
-      ZOrder		      17
       SampleTime	      "T"
-    }
-    Block {
-      BlockType		      ZeroOrderHold
-      Name		      "Zero-Order\nHold1"
-      SID		      "19"
-      Position		      [270, 415, 305, 445]
-      ZOrder		      30
-      SampleTime	      "T"
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "select1"
-      SID		      "15"
-      Position		      [500, 192, 550, 228]
-      ZOrder		      26
-      Gain		      "[1 0 0 0]"
-      Multiplication	      "Matrix(K*u)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "select2"
-      SID		      "20"
-      Position		      [500, 472, 550, 508]
-      ZOrder		      31
-      Gain		      "[1 0 0 0]"
-      Multiplication	      "Matrix(K*u)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "select3"
-      SID		      "34"
-      Position		      [500, 737, 550, 773]
-      ZOrder		      39
-      Gain		      "[1 0 0 0]"
-      Multiplication	      "Matrix(K*u)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"y"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Line {
-      SrcBlock		      "Gain"
+      Name		      "x"
+      Labels		      [1, 1]
+      SrcBlock		      "Discrete State-Space"
       SrcPort		      1
-      Points		      [-73, 0; 0, -105]
-      DstBlock		      "Zero-Order\nHold"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Zero-Order\nHold"
-      SrcPort		      1
-      DstBlock		      "State-Space1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "State-Space1"
-      SrcPort		      1
-      Points		      [44, 0; 0, 40]
+      Points		      [49, 0; 0, 50]
       Branch {
-	DstBlock		"select1"
+	DstBlock		"Scope1"
 	DstPort			1
       }
       Branch {
-	Points			[0, 65]
+	Points			[0, 60]
 	DstBlock		"Gain"
 	DstPort			1
       }
     }
     Line {
-      SrcBlock		      "Gain1"
+      Name		      "u"
+      Labels		      [3, 1]
+      SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [-73, 0; 0, -105]
-      DstBlock		      "Zero-Order\nHold1"
+      Points		      [-75, 0; 0, -110]
+      DstBlock		      "Discrete State-Space"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Zero-Order\nHold1"
+      Name		      "y"
+      Labels		      [1, 1]
+      SrcBlock		      "system"
       SrcPort		      1
-      DstBlock		      "State-Space2"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "State-Space2"
-      SrcPort		      1
-      Points		      [44, 0; 0, 60]
-      Branch {
-	DstBlock		"select2"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 45]
-	DstBlock		"Gain1"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "select1"
-      SrcPort		      1
-      Points		      [34, 0]
-      Branch {
-	Points			[0, 80]
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Scope1"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "select2"
-      SrcPort		      1
-      Points		      [38, 0]
-      Branch {
-	Points			[0, 70]
-	DstBlock		"To Workspace1"
-	DstPort			1
-      }
+      Points		      [52, 0; 0, 50]
       Branch {
 	DstBlock		"Scope2"
 	DstPort			1
       }
-    }
-    Line {
-      SrcBlock		      "Discrete State-Space"
-      SrcPort		      1
-      Points		      [49, 0; 0, 60]
       Branch {
-	DstBlock		"select3"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 45]
-	DstBlock		"Gain2"
+	Points			[0, 70]
+	DstBlock		"estimator"
 	DstPort			1
       }
     }
     Line {
-      SrcBlock		      "select3"
+      Name		      "u"
+      Labels		      [3, 1]
+      SrcBlock		      "Gain1"
       SrcPort		      1
-      DstBlock		      "Scope3"
+      Points		      [-18, 0; 0, -120]
+      DstBlock		      "system"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Gain2"
+      Name		      "x"
+      Labels		      [1, 1]
+      SrcBlock		      "estimator"
       SrcPort		      1
-      Points		      [-100, 0; 0, -105]
-      DstBlock		      "Discrete State-Space"
+      DstBlock		      "Gain1"
       DstPort		      1
     }
     Annotation {
-      SID		      "25"
-      Name		      "full feedback\nroots: (z-0.9)^4"
-      Position		      [291, 117]
+      SID		      "7"
+      Name		      "Chapter 8 examples\nDigital Control of Dynamic Systems (Franklin, Powell, Workman)"
+      Position		      [114, 50]
+      HorizontalAlignment     "left"
+      FontSize		      12
+      FontWeight	      "bold"
+    }
+    Annotation {
+      SID		      "9"
+      Name		      "full feedback\nroots: (0.8 \\pm 0.25i)"
+      Position		      [191, 132]
       HorizontalAlignment     "left"
       Interpreter	      "tex"
-      ZOrder		      -1
+      ZOrder		      -3
       FontSize		      12
       FontWeight	      "bold"
     }
     Annotation {
       SID		      "14"
-      Name		      "u"
-      Position		      [330, 157]
-      ZOrder		      -1
-    }
-    Annotation {
-      SID		      "13"
-      Name		      "x"
-      Position		      [434, 159]
-      ZOrder		      -2
-    }
-    Annotation {
-      SID		      "21"
-      Name		      "u"
-      Position		      [330, 417]
-      ZOrder		      -1
-    }
-    Annotation {
-      SID		      "22"
-      Name		      "x"
-      Position		      [434, 419]
-      ZOrder		      -2
-    }
-    Annotation {
-      SID		      "26"
-      Name		      "full feedback\nroots: (0.9 \\pm 0.05i) (0.8 \\pm 0.4i)"
-      Position		      [251, 382]
+      Name		      "full order \"predictor\" estimator\nroots: (0.8 \\pm 0.25i)"
+      Position		      [161, 392]
       HorizontalAlignment     "left"
       Interpreter	      "tex"
-      ZOrder		      -1
+      ZOrder		      -4
       FontSize		      12
       FontWeight	      "bold"
-    }
-    Annotation {
-      SID		      "35"
-      Name		      "u"
-      Position		      [270, 682]
-      ZOrder		      -1
-    }
-    Annotation {
-      SID		      "36"
-      Name		      "x"
-      Position		      [434, 684]
-      ZOrder		      -2
     }
   }
 }

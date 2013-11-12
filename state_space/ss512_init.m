@@ -1,18 +1,12 @@
 
 %
-% ss51_init.m
+% ss512_init.m
 %
 % State Space, Control Law
 %  full feedback (all observable)
 %
-% x' = Ax + Bu
-% y = Cx + Du
-%
-% u = -K*x
-%
 
 clear;
-%clf;
 
 % problem specs
 T = 0.4;  % time step
@@ -49,14 +43,7 @@ K2 = myacker(Phi, Gamma, z2);
 K2matlab = place(Phi, Gamma, z2);
 %K2matlab = acker(Phi, Gamma, z2);
 
-% Our K should match the K calculatd by Matlab
-%K1
-%K1matlab
-%K2
-%K2matlab
-
-
-
-
-
-
+% full order "predictor" estimator
+z3 = 0.85*z2;
+H = [1 0 0 0];
+Lp = acker(Phi', H', z3)';

@@ -1,12 +1,12 @@
 Model {
-  Name			  "ss51"
+  Name			  "ss512"
   Version		  8.1
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.51"
+    ComputedModelVersion    "1.59"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [535.0, 16.0, 963.0, 757.0]
+      Location		      [620.0, 34.0, 963.0, 800.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -54,9 +54,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[724.0, 597.0]
+	Extents			[724.0, 640.0]
 	ZoomFactor		[1.0]
-	Offset			[77.0, 273.83750286698341]
+	Offset			[77.0, 254.83750286698341]
       }
     }
   }
@@ -66,9 +66,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jmahler"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 12 00:01:36 2013"
-  RTWModifiedTimeStamp	  306115294
-  ModelVersionFormat	  "1.%<AutoIncrement:51>"
+  LastModifiedDate	  "Tue Nov 12 03:12:34 2013"
+  RTWModifiedTimeStamp	  306125969
+  ModelVersionFormat	  "1.%<AutoIncrement:59>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -105,12 +105,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "ss51"
+    model_		    "ss512"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "ss51"
+      Cell		      "ss512"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -817,8 +817,8 @@ Model {
     }
   }
   System {
-    Name		    "ss51"
-    Location		    [535, 16, 1498, 773]
+    Name		    "ss512"
+    Location		    [620, 34, 1583, 834]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -832,20 +832,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "38"
-    Block {
-      BlockType		      DiscreteStateSpace
-      Name		      "Discrete State-Space"
-      SID		      "38"
-      Position		      [300, 676, 410, 714]
-      ZOrder		      43
-      A			      "Phi"
-      B			      "Gamma"
-      C			      "H"
-      D			      "G"
-      X0		      "x1"
-      SampleTime	      "T"
-    }
+    SIDHighWatermark	    "45"
     Block {
       BlockType		      Gain
       Name		      "Gain"
@@ -876,7 +863,7 @@ Model {
       BlockType		      Gain
       Name		      "Gain2"
       SID		      "29"
-      Position		      [360, 782, 410, 818]
+      Position		      [250, 827, 300, 863]
       ZOrder		      37
       BlockMirror	      on
       Gain		      "-K2"
@@ -884,6 +871,12 @@ Model {
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"u"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      Scope
@@ -949,10 +942,10 @@ Model {
       Name		      "Scope3"
       SID		      "30"
       Ports		      [1]
-      Position		      [635, 739, 665, 771]
+      Position		      [640, 729, 670, 761]
       ZOrder		      40
       Floating		      off
-      Location		      [784, 136, 1557, 669]
+      Location		      [52, 78, 825, 611]
       Open		      off
       NumInputPorts	      "1"
       List {
@@ -999,6 +992,24 @@ Model {
       X0		      "x1"
     }
     Block {
+      BlockType		      StateSpace
+      Name		      "State-Space3"
+      SID		      "39"
+      Position		      [355, 688, 415, 722]
+      ZOrder		      44
+      A			      "A"
+      B			      "B"
+      C			      "H"
+      D			      "[0]"
+      X0		      "x1"
+      Port {
+	PortNumber		1
+	Name			"y"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace"
       SID		      "27"
@@ -1023,6 +1034,18 @@ Model {
       SaveFormat	      "Timeseries"
     }
     Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      "45"
+      Ports		      [1]
+      Position		      [640, 810, 675, 840]
+      ZOrder		      50
+      VariableName	      "d3"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Timeseries"
+    }
+    Block {
       BlockType		      ZeroOrderHold
       Name		      "Zero-Order\nHold"
       SID		      "4"
@@ -1037,6 +1060,34 @@ Model {
       Position		      [270, 415, 305, 445]
       ZOrder		      30
       SampleTime	      "T"
+    }
+    Block {
+      BlockType		      ZeroOrderHold
+      Name		      "Zero-Order\nHold2"
+      SID		      "40"
+      Position		      [270, 690, 305, 720]
+      ZOrder		      45
+      SampleTime	      "T"
+    }
+    Block {
+      BlockType		      DiscreteStateSpace
+      Name		      "estimator"
+      SID		      "43"
+      Position		      [355, 826, 465, 864]
+      ZOrder		      49
+      BlockMirror	      on
+      A			      "(Phi - Gamma*K2 - Lp*H)"
+      B			      "Lp"
+      C			      "eye(4)"
+      D			      "[0; 0; 0; 0]"
+      X0		      "x1"
+      SampleTime	      "T"
+      Port {
+	PortNumber		1
+	Name			"x"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      Gain
@@ -1056,18 +1107,6 @@ Model {
       SID		      "20"
       Position		      [500, 472, 550, 508]
       ZOrder		      31
-      Gain		      "[1 0 0 0]"
-      Multiplication	      "Matrix(K*u)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "select3"
-      SID		      "34"
-      Position		      [500, 737, 550, 773]
-      ZOrder		      39
       Gain		      "[1 0 0 0]"
       Multiplication	      "Matrix(K*u)"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1157,31 +1196,51 @@ Model {
       }
     }
     Line {
-      SrcBlock		      "Discrete State-Space"
+      SrcBlock		      "Zero-Order\nHold2"
       SrcPort		      1
-      Points		      [49, 0; 0, 60]
-      Branch {
-	DstBlock		"select3"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 45]
-	DstBlock		"Gain2"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "select3"
-      SrcPort		      1
-      DstBlock		      "Scope3"
+      DstBlock		      "State-Space3"
       DstPort		      1
     }
     Line {
+      Name		      "u"
+      Labels		      [3, 1]
       SrcBlock		      "Gain2"
       SrcPort		      1
-      Points		      [-100, 0; 0, -105]
-      DstBlock		      "Discrete State-Space"
+      Points		      [-33, 0; 0, -140]
+      DstBlock		      "Zero-Order\nHold2"
       DstPort		      1
+    }
+    Line {
+      Name		      "x"
+      Labels		      [1, 1]
+      SrcBlock		      "estimator"
+      SrcPort		      1
+      DstBlock		      "Gain2"
+      DstPort		      1
+    }
+    Line {
+      Name		      "y"
+      Labels		      [1, 1]
+      SrcBlock		      "State-Space3"
+      SrcPort		      1
+      Points		      [61, 0; 0, 40]
+      Branch {
+	Points			[118, 0]
+	Branch {
+	  Points		  [0, 80]
+	  DstBlock		  "To Workspace2"
+	  DstPort		  1
+	}
+	Branch {
+	  DstBlock		  "Scope3"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	Points			[0, 100]
+	DstBlock		"estimator"
+	DstPort			1
+      }
     }
     Annotation {
       SID		      "25"
@@ -1228,16 +1287,14 @@ Model {
       FontWeight	      "bold"
     }
     Annotation {
-      SID		      "35"
-      Name		      "u"
-      Position		      [270, 682]
-      ZOrder		      -1
-    }
-    Annotation {
-      SID		      "36"
-      Name		      "x"
-      Position		      [434, 684]
-      ZOrder		      -2
+      SID		      "44"
+      Name		      "full order \"predictor\" estimator\nroots: (0.9 \\pm 0.05i) (0.8 \\pm 0.4i)"
+      Position		      [226, 647]
+      HorizontalAlignment     "left"
+      Interpreter	      "tex"
+      ZOrder		      -7
+      FontSize		      12
+      FontWeight	      "bold"
     }
   }
 }
