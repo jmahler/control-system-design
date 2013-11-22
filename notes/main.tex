@@ -30,6 +30,15 @@
 	\includepdf[scale=0.8,pagecommand={},#1]{#2}
 }
 
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+
+% For fourth level headers, use \paragraph
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 \begin{document}
 
 % {{{ title page
@@ -70,35 +79,22 @@ Many of the examples are hand written and place in line.
 It would be nice to have these properly formatted in \LaTeX but
 for the time being hand written is more expedient.
 
-% {{{ Common Plants
-\section{Common Plants}
+% {{{ Common Plants/Systems
+\section{Common Plants/Systems}
 
 \nocite{ogata1995discrete}
 \nocite{franklin1998digital}
 
-Double Integrator:
-\begin{align*}
-	H(s) &= \frac{1}{s^2}
-\end{align*}
+Plants denoted by $G(s)$ and systems by $H(s)$.
 
 \begin{align*}
-	G(s) &= \frac{1}{(s + 1)^2}
-\end{align*}
-
-\begin{align*}
-	H(s) &= \frac{1 + 10s}{1 + s}
-\end{align*}
-
-\begin{align*}
-	G(s) &= \frac{a}{s(s + a)}
-\end{align*}
-
-\begin{align*}
-	G(s) &= \frac{1}{s(s + 0.4)}
-\end{align*}
-
-\begin{align*}
-	G(s) &= \frac{10}{s^2 + s + 1}
+	G(s) &= \frac{1}{s^2} & \mbox{(Double Integrator)}\\
+	G(s) &= \frac{1}{(s + 1)^2} \\
+	H(s) &= \frac{1 + 10s}{1 + s} \\
+	G(s) &= \frac{a}{s(s + a)} \\
+	G(s) &= \frac{1}{s(s + 0.4)} \\
+	G(s) &= \frac{10}{s^2 + s + 1} \\
+	G(s) &= \frac{10}{(s + 0.1)(s + 0.2)}
 \end{align*}
 
 % }}}
@@ -110,7 +106,7 @@ Double Integrator:
 
 \sincludepdf[pages={1}]{scan/11211301.pdf}
 
-\subsection{Second Order From Specifications}
+\subsection{Second Order System From Specifications}
 
 \begin{align}
 	H(s) &= \frac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2}
@@ -125,13 +121,26 @@ and setting time ($T_s$) are one example.
 	T_s &= \frac{4}{\zeta \omega_n}
 \end{align*}
 
-\subsection{Pole Placement}
+\sincludepdf[pages={3},
+			pagecommand=\subsubsection*{Example 1}
+		]{scan/11221301.pdf}
+
+\sincludepdf[pages={4},
+			pagecommand=\subsection{Pole Placement}\subsubsection*{Example 1}
+		]{scan/11221301.pdf}
 
 \subsection{Steady State Performance}
 
 \subsection{Pole Placement, Diophantine}
 
+% {{{ PID Controller Design
 \subsection{PID Controller Design}
+
+\sincludepdf[pages={5},
+			pagecommand=\subsubsection*{Example 1}
+		]{scan/11221301.pdf}
+
+% }}}
 
 \subsection{State Space to Transfer Function (S-domain)}
 
@@ -140,7 +149,7 @@ and setting time ($T_s$) are one example.
 \subsection{Transfer Function (S-domain) to State Space}
 
 \sincludepdf[pages={4},
-			pagecommand=\subsubsection{Example 1}
+			pagecommand=\subsubsection*{Example 1}
 		]{scan/11211301.pdf}
 \sincludepdf[pages={5}]{scan/11211301.pdf}
 
@@ -152,51 +161,45 @@ and setting time ($T_s$) are one example.
 	X(z) = \sum_{n = -\infty}^{\infty} x(n) z^{-n}
 \end{align}
 
-\sincludepdf[pages={6}]{scan/11211301.pdf}
+\sincludepdf[pages={6},
+		pagecommand=\subsubsection*{Example 1}
+	]{scan/11211301.pdf}
 
-\subsection{Geometric Series}
-
-\sincludepdf[pages={7}]{scan/11211301.pdf}
+\sincludepdf[pages={7},
+		pagecommand=\subsection{Geometric Series}
+	]{scan/11211301.pdf}
 
 \subsection{S-domain to Z-domain}
 %\subsection{Design by Z-Domain Equivalents}
 
+When designing by discrete equivalents the design is performed
+in the continuous domain and then converted to the discrete domain.
+This is in contrast to direct design (Section \ref{sec:dd}) where
+it is designed in the discrete domain without using the continuous domain.
+
 To check stability, entire system must be in Z-domain.
 
 
-\subsubsection{Zero Order Hold}
 
-A Zero Order Hold converts a S-domain system to the Z-domain.
-It is effectively the same as putting an D/A converter before
-the continuous system.
-In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
+\sincludepdf[pages={10},
+			pagecommand=\subsubsection{Mapping: $z=e^{sT}$}\subsubsection*{Example 1}
+		]{scan/11221301.pdf}
 
-\begin{figure}
-(TODO)
-\caption{A Zero Order Hold in Simulink created by preceeding
-a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
-\label{fig:simulinkzoh}
-\end{figure}
+\sincludepdf[pages={9},
+			pagecommand=\subsubsection{Mapping: Forward, Backward, Trapezoid}\paragraph{Example 1}
+	]{scan/11211301.pdf}
 
-\begin{align}
-	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
-\end{align}
+\sincludepdf[pages={10},
+			pagecommand=\paragraph{Example 2}
+	]{scan/11211301.pdf}
 
-\begin{lstlisting}
-% Matlab
-Gs = tf(Bs, As);
-Gz = c2d(Gs, T, 'ZOH');
-\end{lstlisting}
+\sincludepdf[pages={8},
+			pagecommand=\subsubsection*{Example 3}
+		]{scan/11221301.pdf}
 
-\sincludepdf[pages={8}]{scan/11211301.pdf}
-
-\subsubsection{Mapping: $z=e^{sT}$}
-
-\subsubsection{Mapping: Forward, Backward, Trapezoid}
-
-\sincludepdf[pages={9}]{scan/11211301.pdf}
-
-\sincludepdf[pages={10}]{scan/11211301.pdf}
+\sincludepdf[pages={9},
+			pagecommand=\subsubsection*{Example 4}
+		]{scan/11221301.pdf}
 
 \subsubsection{Digital PID, Ghandakly's Method}
 
@@ -204,15 +207,15 @@ Gz = c2d(Gs, T, 'ZOH');
 \subsection{Algorithm (Z-Domain) to Difference Equation}
 
 \sincludepdf[pages={11},
-			pagecommand=\subsubsection{Example 1}
+			pagecommand=\subsubsection*{Example 1}
 		]{scan/11211301.pdf}
 
 \sincludepdf[pages={12},
-			pagecommand=\subsubsection{Example 2}
+			pagecommand=\subsubsection*{Example 2}
 		]{scan/11211301.pdf}
 
 \sincludepdf[pages={13},
-			pagecommand=\subsubsection{Example 3}
+			pagecommand=\subsubsection*{Example 3}
 		]{scan/11211301.pdf}
 % }}}
 
@@ -291,6 +294,48 @@ E=
 
 % }}}
 
+% {{{ Zero Order Hold
+\subsubsection{Zero Order Hold}
+
+A Zero Order Hold converts a S-domain system to the Z-domain.
+It is effectively the same as putting an D/A converter before
+the continuous system.
+In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
+
+\begin{figure}
+(TODO)
+\caption{A Zero Order Hold in Simulink created by preceding
+a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
+\label{fig:simulinkzoh}
+\end{figure}
+
+\begin{align}
+	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
+\end{align}
+
+\begin{lstlisting}
+% Matlab
+Gs = tf(Bs, As);
+Gz = c2d(Gs, T, 'ZOH');
+\end{lstlisting}
+
+\sincludepdf[pages={8},
+			pagecommand=\paragraph{Example 1}
+	]{scan/11211301.pdf}
+
+\sincludepdf[pages={6},
+			pagecommand=\subsubsection*{Example 2}
+		]{scan/11221301.pdf}
+\sincludepdf[pages={7}]{scan/11221301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\subsubsection*{Example 3}
+		]{scan/11221301.pdf}
+\sincludepdf[pages={2}]{scan/11221301.pdf}
+
+
+% }}}
+
 % {{{ Direct Design
 \clearpage
 \subsection{Direct Design ($K$)}
@@ -351,7 +396,7 @@ the plant and $D$ (${\beta}/{\alpha}$) is the controller.}
 
 \sincludepdf[
 	pages=1,
-	pagecommand=\subsubsection{Example: $\dfrac{1}{s^2}$}
+	pagecommand=\subsubsection*{Example: $\dfrac{1}{s^2}$}
 	]{scan/11211302.pdf}
 \sincludepdf[pages=2-5]{scan/11211302.pdf}
 
@@ -458,7 +503,7 @@ Partial feedback with estimated.
 \clearpage
 \appendix
 
-\section{Sylvester Calculation in Matlab}
+\section{Sylvester Matrix in Matlab}
 
 \lstinputlisting[
 	caption={Matlab function to calculate a Sylvester Matrix.},
