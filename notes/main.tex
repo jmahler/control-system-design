@@ -1,0 +1,473 @@
+
+\documentclass{article}
+
+\usepackage{parskip}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphviz}
+
+\usepackage[backend=biber,autocite=footnote,
+			bibstyle=authortitle,citestyle=verbose-inote]{biblatex}
+\addbibresource{main.bib}
+\setlength\bibitemsep{1em}
+
+\usepackage{listings}
+\lstset{numbers=left,
+		float=htpb,
+		language=Matlab,
+		basicstyle=\footnotesize,
+		captionpos=b,
+		xleftmargin=0.3in}
+
+\raggedright
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage[]{pdfpages}
+% \sincludepdf command sets common options for \includepdf
+\newcommand{\sincludepdf}[2][]{
+	\includepdf[scale=0.8,pagecommand={},#1]{#2}
+}
+
+\begin{document}
+
+% {{{ title page
+
+\vspace*{0.5in}
+
+\centerline{\LARGE \textbf{Notes on Control System Design}}
+\vspace{0.2in}
+
+\begin{center}
+\begin{tabular}{c}
+Jeremiah Mahler \texttt{<jmmahler@gmail.com>} \\
+\today
+\end{tabular}
+\end{center}
+
+\thispagestyle{empty}
+\vfill
+\pagebreak
+
+% }}}
+
+\tableofcontents
+
+\clearpage
+
+\section{Introduction}
+
+This document is a collection of notes on control system design.
+The author collected this information while taking two control systems
+classes at California State University Chico taught by Dr. Adel Ghandakly.
+The first was an introduction to control systems (EECE 482) and
+the second was an advanced control systems engineering (EECE 682).
+The former focused on continuous systems whereas the latter was on
+discrete.
+
+Many of the examples are hand written and place in line.
+It would be nice to have these properly formatted in \LaTeX but
+for the time being hand written is more expedient.
+
+% {{{ Common Plants
+\section{Common Plants}
+
+\nocite{ogata1995discrete}
+\nocite{franklin1998digital}
+
+Double Integrator:
+\begin{align*}
+	H(s) &= \frac{1}{s^2}
+\end{align*}
+
+\begin{align*}
+	G(s) &= \frac{1}{(s + 1)^2}
+\end{align*}
+
+\begin{align*}
+	H(s) &= \frac{1 + 10s}{1 + s}
+\end{align*}
+
+\begin{align*}
+	G(s) &= \frac{a}{s(s + a)}
+\end{align*}
+
+\begin{align*}
+	G(s) &= \frac{1}{s(s + 0.4)}
+\end{align*}
+
+\begin{align*}
+	G(s) &= \frac{10}{s^2 + s + 1}
+\end{align*}
+
+% }}}
+
+\clearpage
+\section{Continuous}
+
+\subsection{Laplace Transform}
+
+\sincludepdf[pages={1}]{scan/11211301.pdf}
+
+\subsection{Second Order From Specifications}
+
+\begin{align}
+	H(s) &= \frac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2}
+\end{align}
+
+There are different ways to find $\omega_n$ and $\zeta$.
+The following specs for the rise time ($T_r$), over shoot ($\%OS$),
+and setting time ($T_s$) are one example.
+\begin{align*}
+	T_r &= \frac{2.22}{\omega_n} \\
+	\%OS &= \left( 1 - \frac{\zeta}{0.6} \right) \cdot 100 \\
+	T_s &= \frac{4}{\zeta \omega_n}
+\end{align*}
+
+\subsection{Pole Placement}
+
+\subsection{Steady State Performance}
+
+\subsection{Pole Placement, Diophantine}
+
+\subsection{PID Controller Design}
+
+\subsection{State Space to Transfer Function (S-domain)}
+
+\sincludepdf[pages={2-3}]{scan/11211301.pdf}
+
+\subsection{Transfer Function (S-domain) to State Space}
+
+\sincludepdf[pages={4},
+			pagecommand=\subsubsection{Example 1}
+		]{scan/11211301.pdf}
+\sincludepdf[pages={5}]{scan/11211301.pdf}
+
+\section{Digital}
+
+\subsection{Z-transform}
+
+\begin{align}
+	X(z) = \sum_{n = -\infty}^{\infty} x(n) z^{-n}
+\end{align}
+
+\sincludepdf[pages={6}]{scan/11211301.pdf}
+
+\subsection{Geometric Series}
+
+\sincludepdf[pages={7}]{scan/11211301.pdf}
+
+\subsection{S-domain to Z-domain}
+%\subsection{Design by Z-Domain Equivalents}
+
+To check stability, entire system must be in Z-domain.
+
+
+\subsubsection{Zero Order Hold}
+
+A Zero Order Hold converts a S-domain system to the Z-domain.
+It is effectively the same as putting an D/A converter before
+the continuous system.
+In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
+
+\begin{figure}
+(TODO)
+\caption{A Zero Order Hold in Simulink created by preceeding
+a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
+\label{fig:simulinkzoh}
+\end{figure}
+
+\begin{align}
+	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
+\end{align}
+
+\begin{lstlisting}
+% Matlab
+Gs = tf(Bs, As);
+Gz = c2d(Gs, T, 'ZOH');
+\end{lstlisting}
+
+\sincludepdf[pages={8}]{scan/11211301.pdf}
+
+\subsubsection{Mapping: $z=e^{sT}$}
+
+\subsubsection{Mapping: Forward, Backward, Trapezoid}
+
+\sincludepdf[pages={9}]{scan/11211301.pdf}
+
+\sincludepdf[pages={10}]{scan/11211301.pdf}
+
+\subsubsection{Digital PID, Ghandakly's Method}
+
+% {{{ Algorithm (Z-Domain) to Difference Equation
+\subsection{Algorithm (Z-Domain) to Difference Equation}
+
+\sincludepdf[pages={11},
+			pagecommand=\subsubsection{Example 1}
+		]{scan/11211301.pdf}
+
+\sincludepdf[pages={12},
+			pagecommand=\subsubsection{Example 2}
+		]{scan/11211301.pdf}
+
+\sincludepdf[pages={13},
+			pagecommand=\subsubsection{Example 3}
+		]{scan/11211301.pdf}
+% }}}
+
+% {{{ Diophantine Equation
+\subsection{Diophantine Equation}
+
+The Diophantine Equation is used to find a solution to a system
+if it is in a very specific form (Equation \ref{eq:diophantine}).
+For more information refer to Ogata\autocite[Pg. 525]{ogata1995discrete}
+where this method is called the ``Polynomial Equations Approach''.
+
+\begin{align}
+	\alpha(z)A(z) + \beta(z)B(z) &= D \label{eq:diophantine}
+\end{align}
+
+Where $D$ is the characteristic polynomial.
+Typically, $A(z)$ and $B(z)$ are known and $\alpha(z)$ and $\beta(z)$
+are to be found.
+Each element must have a specific order as shown below.
+The order ($n$) will correspond to the order of the
+Sylvester Matrix (Section \ref{sec:sylvester}).
+
+\[
+\begin{array}{ccccccc}
+	\alpha(z) &A(z) &+ &\beta(z) &B(z) &= &D \\
+	  (n-1)   &(n)  &  & (n-1)  &(n) & &(2n-1)
+\end{array}
+\]
+
+When $A(z)$ and $B(z)$ are known $\alpha(z)$ and $\beta(z)$
+can be found using Equation \ref{eq:diopmat}.
+
+\begin{align}
+	M &= E^{-1} D \label{eq:diopmat} \\
+%	M &:
+%	\left[
+%	\begin{array}{l}
+%		\alpha \\
+%		\beta
+%	\end{array}
+%	\right] \notag \\
+	\left[
+	\begin{array}{l}
+		\alpha \\
+		\beta
+	\end{array}
+	\right] &= E^{-1} D \notag
+\end{align}
+
+\subsubsection{Sylvester Matrix}
+\label{sec:sylvester}
+
+Second Order
+\[
+E=
+\begin{bmatrix}
+	a_2 & 0 & b_2 & 0 \\
+	a_1 & a_2 & b_1 & b_2 \\
+	a_0 & a_1 & b_0 & b_1 \\
+	0 & a_0 & 0 & b_0 \\
+\end{bmatrix}
+\]
+
+Third Order
+\[
+E=
+\begin{bmatrix}
+	a_3 & 0 & 0 & b_3 & 0 & 0 \\
+	a_2 & a_3 & 0 & b_2 & b_3 & 0 \\
+	a_1 & a_2 & a_3 & b_1 & b_2 & b_3 \\
+	a_0 & a_1 & a_2 & b_0 & b_1 & b_2 \\
+	0 & a_0 & a_1 & 0 & b_0 & b_1 \\
+	0 & 0 & a_0 & 0 & 0 & b_0 \\
+\end{bmatrix}
+\]
+
+% }}}
+
+% {{{ Direct Design
+\clearpage
+\subsection{Direct Design ($K$)}
+\label{sec:dd}
+
+For Direct Design the system is in the form shown in Figure \ref{fig:dd}.
+For more information refer to Ogata\autocite[Pg. 517]{ogata1995discrete}.
+
+% {{{ dd figure
+\begin{figure}
+
+\begin{center}
+\tikzstyle{block}=[draw,minimum size=2.4em]
+\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
+%\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
+
+	% place all the block, points, relative to each other
+	\node [coordinate,node distance=2cm] (u) {u};
+	\node [block,right of=u] (k) {$K$};
+	\node [sum,right of=k] (s) {};
+	\node [coordinate,below of=s] (ds) {ds};
+	\node [block,right of=ds] (d) {$D(s)$};
+	\node [block,right of=s] (g) {$G(s)$};
+	\node [coordinate,right of=g] (gdy) {};
+	\node [coordinate,right of=gdy,node distance=2cm] (y) {y};
+	\node [coordinate,right of=d] (gd) {gd};
+
+	% add signs to sum
+	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=3mm] {$+$};
+	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=-4mm] {$-$};
+
+	% add labels to G(s) and D(s)
+	\node [right of=g,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{B}{A}$};
+	\node [right of=d,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{\beta}{\alpha}$};
+
+	% connect all the nodes and points
+	\path[->] (u) edge node {$u$} (k);
+	\path[->] (k) edge node {} (s);
+	\path[->] (ds) edge node {} (s);
+	\path[-]  (d) edge node {} (ds);
+	\path[->] (s) edge node {$\epsilon$} (g);
+	\path[-] (g) edge node {} (gdy);
+	\path[->] (gdy) edge node {$y$} (y);
+	\path[-] (gdy) edge node {} (gd);
+	\path[->] (gd) edge node {} (d);
+
+\end{tikzpicture}
+\end{center}
+
+\caption{Direct Design system wit $K$ as a scaling input, $G$ is
+the plant and $D$ (${\beta}/{\alpha}$) is the controller.}
+\label{fig:dd}
+\end{figure}
+% }}}
+
+\clearpage
+
+\sincludepdf[
+	pages=1,
+	pagecommand=\subsubsection{Example: $\dfrac{1}{s^2}$}
+	]{scan/11211302.pdf}
+\sincludepdf[pages=2-5]{scan/11211302.pdf}
+
+Listing \ref{lst:dd1s2_init} shows the Matlab code used to perform
+these calculations.
+Listing \ref{lst:dd1s2_plot} shows the Matlab code to plot the response.
+Figure \ref{fig:dd1s2_plot} shows the response.
+
+\lstinputlisting[
+	caption={Matlab script to find Direct Design of double integrator.},
+	label=lst:dd1s2_init,
+]{../direct_design/dd1s2_init.m}
+
+\lstinputlisting[
+	caption={Matlab script to plot the response of the double integrator.},
+	label=lst:dd1s2_plot,
+]{../direct_design/dd1s2_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../direct_design/dd1s2_plot}
+\end{center}
+\caption{Response of double integrator for controller built
+using Direct Design.}
+\label{fig:dd1s2_plot}
+\end{figure}
+
+% }}}
+
+% {{{ Model Matching
+\clearpage
+\subsection{Model Matching ($G_{model}$)}
+\label{sec:mm}
+
+Controller design using Model Matching is similar to Direct Design
+(Section \ref{sec:dd}) except that instead of a gain ($K$) there is
+another transfer function ($G_{model}$).
+For more information refer to Ogata\autocite[Pg. 532]{ogata1995discrete}.
+
+\begin{figure}
+
+\begin{center}
+\tikzstyle{block}=[draw,minimum size=2.4em]
+\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
+%\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
+
+	% place all the block, points, relative to each other
+	\node [coordinate,node distance=2cm] (u) {u};
+	\node [block,right of=u] (k) {$G_{model}$};
+	\node [sum,right of=k] (s) {};
+	\node [coordinate,below of=s] (ds) {ds};
+	\node [block,right of=ds] (d) {$D(z)$};
+	\node [block,right of=s] (g) {$G(z)$};
+	\node [coordinate,right of=g] (gdy) {};
+	\node [coordinate,right of=gdy,node distance=2cm] (y) {y};
+	\node [coordinate,right of=d] (gd) {gd};
+
+	% add signs to sum
+	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=3mm] {$+$};
+	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=-4mm] {$-$};
+
+	% add labels to G(s) and D(s)
+	\node [right of=g,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{B}{A}$};
+	\node [right of=d,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{\beta}{\alpha}$};
+
+	% connect all the nodes and points
+	\path[->] (u) edge node {$u$} (k);
+	\path[->] (k) edge node {} (s);
+	\path[->] (ds) edge node {} (s);
+	\path[-]  (d) edge node {} (ds);
+	\path[->] (s) edge node {$\epsilon$} (g);
+	\path[-] (g) edge node {} (gdy);
+	\path[->] (gdy) edge node {$y$} (y);
+	\path[-] (gdy) edge node {} (gd);
+	\path[->] (gd) edge node {} (d);
+
+\end{tikzpicture}
+\end{center}
+
+\caption{Model Matching system with $G_{model}$ as input. $G$ is
+the plant and $D$ is the controller.}
+\label{fig:mm}
+\end{figure}
+% }}}
+
+\subsection{Poll Placement with Ackerman's Formula}
+
+\subsection{State Space, Full Feedback}
+
+Full feedback with no estimation.
+
+\subsection{State Space, Full Order "predictor" Estimator}
+
+Full feedback but some are estimated.
+
+\subsection{State Space, Reduced Order Estimator}
+
+Partial feedback with estimated.
+
+\clearpage
+\printbibliography[heading=bibintoc]
+
+\clearpage
+\appendix
+
+\section{Sylvester Calculation in Matlab}
+
+\lstinputlisting[
+	caption={Matlab function to calculate a Sylvester Matrix.},
+	label=lst:sylvester,
+]{../direct_design/sylvester.m}
+
+
+\section{Quick Reference}
+
+\subsection{Table of Laplace and Z-transforms}
+
+\end{document}
