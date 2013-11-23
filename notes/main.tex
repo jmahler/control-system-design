@@ -1,6 +1,7 @@
 
 \documentclass{article}
 
+\usepackage{hyperref}
 \usepackage{parskip}
 \usepackage{fullpage}
 \usepackage{amsmath}
@@ -129,6 +130,24 @@ and setting time ($T_s$) are one example.
 			pagecommand=\subsection{Pole Placement}\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
+The response of this system is show in Figure \ref{fig:pps2s4_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pps2s4_plot}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pole_placement_cont/pps2s4_plot}
+\end{center}
+\caption{Response of controller in continuous domain using Pole Placement.}
+\label{fig:pps2s4_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot response of Pole Place controller.},
+	label=lst:pps2s4_plot,
+]{../pole_placement_cont/pps2s4_plot.m}
+
+\clearpage
 \subsection{Steady State Performance}
 
 \subsection{Pole Placement, Diophantine}
@@ -140,18 +159,44 @@ and setting time ($T_s$) are one example.
 			pagecommand=\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
+The response of this system is show in Figure \ref{fig:pids2s4_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pids2s4_plot}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pid_cont/pids2s4_plot}
+\end{center}
+\caption{Response of PID controller.}
+\label{fig:pids2s4_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot response of PID controller.},
+	label=lst:pids2s4_plot,
+]{../pid_cont/pids2s4_plot.m}
+
 % }}}
 
-\subsection{State Space to Transfer Function (S-domain)}
+% {{{ State Space to Transfer Function (S-domain)
+\sincludepdf[pages={2},
+			pagecommand=\subsection{State Space to Transfer Function (S-domain)}\subsubsection*{Example 1}
+	]{scan/11211301.pdf}
+\sincludepdf[pages={3},
+		pagecommand={}
+	]{scan/11211301.pdf}
 
-\sincludepdf[pages={2-3}]{scan/11211301.pdf}
+% }}}
 
-\subsection{Transfer Function (S-domain) to State Space}
+% {{{ Transfer Function (S-domain) to State Space
 
+\clearpage
 \sincludepdf[pages={4},
-			pagecommand=\subsubsection*{Example 1}
+			pagecommand=\subsection{Transfer Function (S-domain) to State Space}\subsubsection*{Example 1}
 		]{scan/11211301.pdf}
 \sincludepdf[pages={5}]{scan/11211301.pdf}
+
+% }}}
 
 \section{Digital}
 
@@ -295,6 +340,7 @@ E=
 % }}}
 
 % {{{ Zero Order Hold
+\clearpage
 \subsubsection{Zero Order Hold}
 
 A Zero Order Hold converts a S-domain system to the Z-domain.
@@ -303,7 +349,34 @@ the continuous system.
 In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
 
 \begin{figure}
-(TODO)
+\begin{center}
+\tikzstyle{block}=[draw,minimum size=2.4em]
+\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
+%\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
+
+	% place all the block, points, relative to each other
+	\node [coordinate,node distance=2cm] (u) {};
+	\node [block,right of=u] (da) {$D/A$};
+	\node [coordinate,right of=da,node distance=2cm] (d) {};
+	\node [block,right of=da] (g) {$G(s)$};
+	\node [coordinate,right of=g,node distance=2cm] (y) {};
+
+	\node [block,below of=d] (gz) {$G(z)$};
+	\node [coordinate,below of=u,node distance=2cm] (uz) {};
+	\node [coordinate,below of=y,node distance=2cm] (yz) {};
+
+	% connect all the nodes and points
+	\path[->] (u) edge node {} (da);
+	\path[->] (da) edge node {} (g);
+	\path[->] (g) edge node {} (y);
+
+	\path[->] (uz) edge node {} (gz);
+	\path[->] (gz) edge node {} (yz);
+
+\end{tikzpicture}
+\end{center}
+
 \caption{A Zero Order Hold in Simulink created by preceding
 a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
 \label{fig:simulinkzoh}
@@ -394,9 +467,8 @@ the plant and $D$ (${\beta}/{\alpha}$) is the controller.}
 
 \clearpage
 
-\sincludepdf[
-	pages=1,
-	pagecommand=\subsubsection*{Example: $\dfrac{1}{s^2}$}
+\sincludepdf[pages=1,
+			pagecommand=\subsubsection*{Example: $\dfrac{1}{s^2}$}
 	]{scan/11211302.pdf}
 \sincludepdf[pages=2-5]{scan/11211302.pdf}
 
@@ -420,7 +492,7 @@ Figure \ref{fig:dd1s2_plot} shows the response.
 \includegraphics[scale=0.6]{../direct_design/dd1s2_plot}
 \end{center}
 \caption{Response of double integrator for controller built
-using Direct Design.}
+using Direct Design. Uses a time step of 0.2 seconds.}
 \label{fig:dd1s2_plot}
 \end{figure}
 
@@ -503,7 +575,7 @@ Partial feedback with estimated.
 \clearpage
 \appendix
 
-\section{Sylvester Matrix in Matlab}
+\section{Sylvester Matrix Generation in Matlab}
 
 \lstinputlisting[
 	caption={Matlab function to calculate a Sylvester Matrix.},

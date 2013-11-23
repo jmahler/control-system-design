@@ -6,4 +6,4 @@ main.pdf: main.tex
 
 clean:
 	-rm -f main.pdf
-
+	-rm -f *.out *.xml *.toc *.blg *.bbl *.bcf *.aux main.log texput.log
