@@ -102,14 +102,12 @@ Plants denoted by $G(s)$ and systems by $H(s)$.
 
 % }}}
 
-\clearpage
-\section{Continuous}
-
 \sincludepdf[pages={1},
-		pagecommand=\subsection{Laplace Transform}\subsubsection*{Example 1}
+		pagecommand=\section{Laplace Transform}\subsection*{Example 1}
 	]{scan/11211301.pdf}
 
-\subsection{Second Order System From Specifications}
+% {{{ Systems From Specifications
+\section{Systems From Specifications}
 
 \begin{align}
 	H(s) &= \frac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2}
@@ -125,62 +123,67 @@ and setting time ($T_s$) are one example.
 \end{align*}
 
 \sincludepdf[pages={3},
-			pagecommand=\subsubsection*{Example 1}
+			pagecommand=\subsection*{Example 1}
 		]{scan/11221301.pdf}
-
-% {{{ Pole Placement, Polynomial Matchin, Example 1
-\sincludepdf[pages={4},
-			pagecommand=\subsection{Pole Placement, Polynomial Matching}\subsubsection*{Example 1}
-		]{scan/11221301.pdf}
-
-The response of this system is show in Figure \ref{fig:pps2s4_plot}.
-The Matlab code used to produce this plot is shown
-in Listing \ref{lst:pps2s4_plot}.
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[scale=0.6]{../pole_placement_cont/pps2s4_plot}
-\end{center}
-\caption{Response of controller in continuous domain using Pole Placement.}
-\label{fig:pps2s4_plot}
-\end{figure}
-
-\lstinputlisting[
-	caption={Matlab script to plot response of Pole Place controller.},
-	label=lst:pps2s4_plot,
-]{../pole_placement_cont/pps2s4_plot.m}
 % }}}
 
-% {{{ Example 2
+% {{{ Pole Placement, Polynomial Matching, Example 1
 \sincludepdf[pages={2},
-			pagecommand=\paragraph{Example 2}
+	pagecommand=\section{Pole Placement, Polynomial Matching}\label{sec:pp}\subsection*{Example 1}
 	]{scan/11231301.pdf}
 \sincludepdf[pages={3}]{scan/11231301.pdf}
 
-The response of this system is show in Figure \ref{fig:pps2s4_plot}.
+% calculation of step response
+\sincludepdf[pages={5}]{scan/11241301.pdf}
+
+The step response of this system is show in Figure \ref{fig:pps2s1_plot}.
 The Matlab code used to produce this plot is shown
-in Listing \ref{lst:pps2s4_plot}.
+in Listing \ref{lst:pps2s1_plot}.
+It can be seen that it agrees with calculated steady state error.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.6]{../pole_placement_cont/pps2s1_plot}
 \end{center}
-\caption{Response of controller in continuous domain using Pole Placement.}
-\label{fig:pps2s4_plot}
+\caption{Step response of controller built using Pole Placement.}
+\label{fig:pps2s1_plot}
 \end{figure}
 
 \lstinputlisting[
-	caption={Matlab script to plot response of Pole Place controller.},
+	caption={Matlab script to plot step response of Pole Place controller.},
 	label=lst:pps2s1_plot,
 ]{../pole_placement_cont/pps2s1_plot.m}
+
+% calculation of ramp response
+\sincludepdf[pages={4}]{scan/11241301.pdf}
+
+The ramp response of this system is show in Figure \ref{fig:pps2s1r_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pps2s1r_plot}.
+It can be seen that it agrees with calculated steady state error.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pole_placement_cont/pps2s1r_plot}
+\end{center}
+\caption{Ramp response of controller built using Pole Placement.}
+\label{fig:pps2s1r_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot ramp response of Pole Place controller.},
+	label=lst:pps2s1r_plot,
+]{../pole_placement_cont/pps2s1r_plot.m}
+
 % }}}
 
 % {{{ Example 3
+\clearpage
 \sincludepdf[pages={4},
-			pagecommand=\paragraph{Example 3}
+			pagecommand=\subsection*{Example 2}
 	]{scan/11231301.pdf}
 
-The response of this system is show in Figure \ref{fig:pps2s1a_plot}.
+The step response of this system is show in Figure \ref{fig:pps2s1a_plot}.
 The Matlab code used to produce this plot is shown
 in Listing \ref{lst:pps2s1a_plot}.
 
@@ -188,28 +191,98 @@ in Listing \ref{lst:pps2s1a_plot}.
 \begin{center}
 \includegraphics[scale=0.6]{../pole_placement_cont/pps2s1a_plot}
 \end{center}
-\caption{Response of controller in continuous domain found using algebraic methods.}
+\caption{Step response of controller found using algebraic methods.}
 \label{fig:pps2s1a_plot}
 \end{figure}
 
 \lstinputlisting[
-	caption={Matlab script to plot response of Pole Place controller.},
+	caption={Matlab script to plot step response of controller
+		found using algebraic methods.},
 	label=lst:pps2s1a_plot,
 ]{../pole_placement_cont/pps2s1a_plot.m}
+
+% calculation of ramp response
+\sincludepdf[pages={6}]{scan/11241301.pdf}
+
+The ramp response of this system is show in Figure \ref{fig:pps2s1ar_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pps2s1ar_plot}.
+It can be seen that the calculated steady state error for a ramp
+response agrees with the plot.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pole_placement_cont/pps2s1ar_plot}
+\end{center}
+\caption{Ramp response of controller found using algebraic methods.}
+\label{fig:pps2s1ar_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot ramp response of controller
+		found using algebraic methods.},
+	label=lst:pps2s1ar_plot,
+]{../pole_placement_cont/pps2s1ar_plot.m}
+
+% }}}
+
+% {{{ old example [DISABLED]
+% old example, not significantly different than others
+%\sincludepdf[pages={4},
+%			pagecommand=\section{Pole Placement, Polynomial Matching}\subsection*{Example 1}
+%		]{scan/11221301.pdf}
+%
+%The response of this system is show in Figure \ref{fig:pps2s4_plot}.
+%The Matlab code used to produce this plot is shown
+%in Listing \ref{lst:pps2s4_plot}.
+%
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[scale=0.6]{../pole_placement_cont/pps2s4_plot}
+%\end{center}
+%\caption{Step response of controller built using Pole Placement.}
+%\label{fig:pps2s4_plot}
+%\end{figure}
+%
+%\lstinputlisting[
+%	caption={Matlab script to plot response of controller built using
+%	Pole Placement.},
+%	label=lst:pps2s4_plot,
+%]{../pole_placement_cont/pps2s4_plot.m}
+%
+%\clearpage
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[scale=0.6]{../pole_placement_cont/pps2s4r_plot}
+%\end{center}
+%\caption{Ramp response of controller built using Pole Placement.}
+%\label{fig:pps2s4r_plot}
+%\end{figure}
+%
+%\lstinputlisting[
+%	caption={Matlab script to plot ramp response of controller built
+%	using Pole Placement.},
+%	label=lst:pps2s4r_plot,
+%]{../pole_placement_cont/pps2s4r_plot.m}
 % }}}
 
 \clearpage
-\subsection{Pole Placement, Diophantine}
+\section{Pole Placement, Diophantine}
 
-\subsection{Steady State Performance (Error)}
+\section{Steady State Performance/Error}
+
+See Section \ref{sec:pp} for examples with steady state error ($\varepsilon_{ss}$).
 
 % {{{ PID Controller Design
 
 \sincludepdf[pages={5},
-			pagecommand=\subsection{PID Controller Design}\subsubsection*{Example 1}
+			pagecommand=\section{PID Controller Design}\subsection*{Example 1}
 		]{scan/11221301.pdf}
 
-The response of this system is show in Figure \ref{fig:pids2s4_plot}.
+% calculation of step response
+\sincludepdf[pages={7}]{scan/11241301.pdf}
+
+The step response of this system is show in Figure \ref{fig:pids2s4_plot}.
 The Matlab code used to produce this plot is shown
 in Listing \ref{lst:pids2s4_plot}.
 
@@ -217,7 +290,7 @@ in Listing \ref{lst:pids2s4_plot}.
 \begin{center}
 \includegraphics[scale=0.6]{../pid_cont/pids2s4_plot}
 \end{center}
-\caption{Response of PID controller.}
+\caption{Step response of PID controller.}
 \label{fig:pids2s4_plot}
 \end{figure}
 
@@ -226,11 +299,32 @@ in Listing \ref{lst:pids2s4_plot}.
 	label=lst:pids2s4_plot,
 ]{../pid_cont/pids2s4_plot.m}
 
+% calculation of ramp response
+\sincludepdf[pages={8}]{scan/11241301.pdf}
+
+The ramp response of this system is show in Figure \ref{fig:pids2s4r_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pids2s4r_plot}.
+Notice that the response does not agree with the calculated error.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pid_cont/pids2s4r_plot}
+\end{center}
+\caption{Ramp response of PID controller.}
+\label{fig:pids2s4r_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot ramp response of PID controller.},
+	label=lst:pids2s4r_plot,
+]{../pid_cont/pids2s4r_plot.m}
+
 % }}}
 
 % {{{ State Space to Transfer Function (S-domain)
 \sincludepdf[pages={2},
-			pagecommand=\subsection{State Space to Transfer Function (S-domain)}\subsubsection*{Example 1}
+			pagecommand=\section{State Space to Transfer Function (S-domain)}\subsection*{Example 1}
 	]{scan/11211301.pdf}
 \sincludepdf[pages={3},
 		pagecommand={}
@@ -242,30 +336,31 @@ in Listing \ref{lst:pids2s4_plot}.
 
 \clearpage
 \sincludepdf[pages={4},
-			pagecommand=\subsection{Transfer Function (S-domain) to State Space}\subsubsection*{Example 1}
+			pagecommand=\section{Transfer Function (S-domain) to State Space}\subsection*{Example 1}
 		]{scan/11211301.pdf}
 \sincludepdf[pages={5}]{scan/11211301.pdf}
 
 % }}}
 
-\section{Digital}
-
-\subsection{Z-transform}
+% {{{ Z-transform
+\section{Z-transform}
 
 \begin{align}
 	X(z) = \sum_{n = -\infty}^{\infty} x(n) z^{-n}
 \end{align}
 
 \sincludepdf[pages={6},
-		pagecommand=\subsubsection*{Example 1}
+		pagecommand=\subsection*{Example 1}
 	]{scan/11211301.pdf}
 
 \sincludepdf[pages={7},
-		pagecommand=\subsection{Geometric Series}
+		pagecommand=\section{Geometric Series}
 	]{scan/11211301.pdf}
+% }}}
 
-\subsection{S-domain to Z-domain}
-%\subsection{Design by Z-Domain Equivalents}
+% {{{ S-domain to Z-domain
+\section{S-domain to Z-domain}
+%\section{Design by Z-Domain Equivalents}
 
 When designing by discrete equivalents the design is performed
 in the continuous domain and then converted to the discrete domain.
@@ -275,19 +370,19 @@ the designed is performed in the discrete domain.
 To check stability, entire system must be in Z-domain.
 
 \sincludepdf[pages={10},
-			pagecommand=\subsubsection{Mapping: $z=e^{sT}$}\subsubsection*{Example 1}
+			pagecommand=\subsection{Mapping: $z=e^{sT}$}\subsection*{Example 1}
 		]{scan/11221301.pdf}
 
 \sincludepdf[pages={1},
-			pagecommand=\paragraph{Example 2}
+			pagecommand=\subsubsection*{Example 2}
 	]{scan/11231301.pdf}
 
 \sincludepdf[pages={9},
-			pagecommand=\subsubsection{Mapping: Forward, Backward, Trapezoid}\paragraph{Example 1}
+			pagecommand=\subsection{Mapping: Forward, Backward, Trapezoid}\subsubsection*{Example 1}
 	]{scan/11211301.pdf}
 
 \sincludepdf[pages={10},
-			pagecommand=\paragraph{Example 2}
+			pagecommand=\subsubsection*{Example 2}
 	]{scan/11211301.pdf}
 
 \sincludepdf[pages={8},
@@ -298,33 +393,44 @@ To check stability, entire system must be in Z-domain.
 			pagecommand=\subsubsection*{Example 4}
 		]{scan/11221301.pdf}
 
-\subsubsection{Digital PID, Ghandakly's Method}
+\subsection{Digital PID, Ghandakly's Method}
 
-\subsection{Analytic Design Method ($K_v$)}
+% }}}
 
-The Analytical Design Method\autocite[Pg. 242]{ogata1995discrete}
-is unique in that it minimizes the steady state
-error for both a step and a ramp input.
+\sincludepdf[pages={3},
+		pagecommand=\section{Final Value Theorem}
+		]{scan/11241301.pdf}
 
+% {{{ $K_v$ Direct Design Method
+\section{$K_v$ Direct Design Method}
+
+This method is characterized by placing a limit on the error
+produced from a ramp input ($K_v$).
+The error due to a step input ($K_p$) will also be zero.
+
+Alternative names for this method are the Direct Method
+of Ragazzini\autocite[Pg. 264]{franklin1998digital} and
+the Analytical Design Method\autocite[Pg. 242]{ogata1995discrete}.
+% }}}
 
 % {{{ Algorithm (Z-Domain) to Difference Equation
-\subsection{Algorithm (Z-Domain) to Difference Equation}
+\section{Algorithm (Z-Domain) to Difference Equation}
 
 \sincludepdf[pages={11},
-			pagecommand=\subsubsection*{Example 1}
+			pagecommand=\subsection*{Example 1}
 		]{scan/11211301.pdf}
 
 \sincludepdf[pages={12},
-			pagecommand=\subsubsection*{Example 2}
+			pagecommand=\subsection*{Example 2}
 		]{scan/11211301.pdf}
 
 \sincludepdf[pages={13},
-			pagecommand=\subsubsection*{Example 3}
+			pagecommand=\subsection*{Example 3}
 		]{scan/11211301.pdf}
 % }}}
 
 % {{{ Diophantine Equation
-\subsection{Diophantine Equation}
+\section{Diophantine Equation}
 
 The Diophantine Equation is used to find a solution to a system
 if it is in a very specific form (Equation \ref{eq:diophantine}).
@@ -369,7 +475,7 @@ can be found using Equation \ref{eq:diopmat}.
 	\right] &= E^{-1} D \notag
 \end{align}
 
-\subsubsection{Sylvester Matrix}
+\subsection{Sylvester Matrix}
 \label{sec:sylvester}
 
 Second Order
@@ -400,7 +506,7 @@ E=
 
 % {{{ Zero Order Hold
 \clearpage
-\subsubsection{Zero Order Hold}
+\section{Zero Order Hold}
 \label{sec:zoh}
 
 A Zero Order Hold converts a S-domain system to the Z-domain.
@@ -408,6 +514,7 @@ It is effectively the same as putting an D/A converter before
 the continuous system.
 In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
 
+% {{{ ZOH figure
 \begin{figure}
 \begin{center}
 \tikzstyle{block}=[draw,minimum size=2.4em]
@@ -441,6 +548,7 @@ In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
 a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
 \label{fig:simulinkzoh}
 \end{figure}
+% }}}
 
 \begin{align}
 	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
@@ -453,25 +561,29 @@ Gz = c2d(Gs, T, 'ZOH');
 \end{lstlisting}
 
 \sincludepdf[pages={8},
-			pagecommand=\paragraph{Example 1}
+			pagecommand=\subsection*{Example 1}
 	]{scan/11211301.pdf}
 
 \sincludepdf[pages={6},
-			pagecommand=\subsubsection*{Example 2}
+			pagecommand=\subsection*{Example 2}
 		]{scan/11221301.pdf}
 \sincludepdf[pages={7}]{scan/11221301.pdf}
 
 \sincludepdf[pages={1},
-			pagecommand=\subsubsection*{Example 3}
+			pagecommand=\subsection*{Example 3}
 		]{scan/11221301.pdf}
 \sincludepdf[pages={2}]{scan/11221301.pdf}
 
+\sincludepdf[pages={1},
+			pagecommand=\subsection*{Example 4}
+		]{scan/11241301.pdf}
+\sincludepdf[pages={2}]{scan/11241301.pdf}
 
 % }}}
 
 % {{{ Direct Design
 \clearpage
-\subsection{Direct Design ($K$)}
+\section{Direct Design ($K$)}
 \label{sec:dd}
 
 % {{{ dd figure
@@ -536,7 +648,7 @@ Examples of this process are included below.
 For a detailed examination refer to Ogata\autocite[Pg. 517]{ogata1995discrete}.
 
 \sincludepdf[pages=1,
-			pagecommand=\subsubsection*{Example: $\dfrac{1}{s^2}$}
+			pagecommand=\subsection*{Example: $\dfrac{1}{s^2}$}
 	]{scan/11211302.pdf}
 \sincludepdf[pages=2-5]{scan/11211302.pdf}
 
@@ -569,7 +681,7 @@ using Direct Design. Uses a time step of 0.2 seconds.}
 
 % {{{ Model Matching
 \clearpage
-\subsection{Model Matching ($G_{model}$)}
+\section{Model Matching ($G_{model}$)}
 \label{sec:mm}
 
 Controller design using Model Matching is similar to Direct Design
@@ -624,17 +736,17 @@ the plant and $D$ is the controller.}
 \end{figure}
 % }}}
 
-\subsection{Poll Placement with Ackerman's Formula}
+\section{Poll Placement with Ackerman's Formula}
 
-\subsection{State Space, Full Feedback}
+\section{State Space, Full Feedback}
 
 Full feedback with no estimation.
 
-\subsection{State Space, Full Order "predictor" Estimator}
+\section{State Space, Full Order "predictor" Estimator}
 
 Full feedback but some are estimated.
 
-\subsection{State Space, Reduced Order Estimator}
+\section{State Space, Reduced Order Estimator}
 
 Partial feedback with estimated.
 
@@ -655,6 +767,6 @@ Partial feedback with estimated.
 
 \section{Quick Reference}
 
-\subsection{Table of Laplace and Z-transforms}
+\section{Table of Laplace and Z-transforms}
 
 \end{document}

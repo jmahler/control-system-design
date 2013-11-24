@@ -1,7 +1,7 @@
 %
-% pps2s4_plot.m
+% pps2s4r_plot.m
 %
-% step response
+% ramp response
 %
 
 Tf = 3;  % time final (sec)
@@ -11,6 +11,6 @@ Ds = tf([177.94 875], [1 47.996]);
 
 Hs = (Ds*Gs)/(1 + Ds*Gs);
 
-step(Hs, Tf);
+ramp(Hs, Tf);
 
-print('pps2s4_plot.eps', '-deps');
+print('pps2s4r_plot.eps', '-deps');
