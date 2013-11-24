@@ -1,8 +1,11 @@
 
-all: pps2s4_plot.pdf
+all: pps2s1a_plot.pdf pps2s1_plot.pdf pps2s4_plot.pdf
 
-pps2s4_plot.eps: pps2s4_plot.m
+%.eps: %.m
 	octave $<
 
-pps2s4_plot.pdf: pps2s4_plot.eps
+%.pdf: %.eps
 	epspdf $<
+
+clean:
+	-rm -f *.eps *.pdf

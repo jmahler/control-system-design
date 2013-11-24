@@ -4,7 +4,7 @@
 % Pole Placement
 %
 
-Tf = 4;  % time final (sec)
+Tf = 3;  % time final (sec)
 
 Gs = tf([1], [1 0.4 0]);
 Ds = tf([177.94 875], [1 47.996]);

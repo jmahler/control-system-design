@@ -36,7 +36,7 @@
 
 % For fourth level headers, use \paragraph
 \titleformat{\paragraph}
-{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+{\normalfont\normalsize\bfseries}{}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
@@ -46,7 +46,7 @@
 
 \vspace*{0.5in}
 
-\centerline{\LARGE \textbf{Notes on Control System Design}}
+\centerline{\LARGE \textbf{Control System Design}}
 \vspace{0.2in}
 
 \begin{center}
@@ -93,9 +93,11 @@ Plants denoted by $G(s)$ and systems by $H(s)$.
 	G(s) &= \frac{1}{(s + 1)^2} \\
 	H(s) &= \frac{1 + 10s}{1 + s} \\
 	G(s) &= \frac{a}{s(s + a)} \\
+	G(s) &= \frac{1}{s(s + 1)} \\
 	G(s) &= \frac{1}{s(s + 0.4)} \\
 	G(s) &= \frac{10}{s^2 + s + 1} \\
-	G(s) &= \frac{10}{(s + 0.1)(s + 0.2)}
+	G(s) &= \frac{10}{(s + 0.1)(s + 0.2)} \\
+	H(s) &= \frac{20}{s^2 + 4s + 20} & \mbox{(from specs: $Tr = 0.5$, $\%OS = 25$)}
 \end{align*}
 
 % }}}
@@ -103,9 +105,9 @@ Plants denoted by $G(s)$ and systems by $H(s)$.
 \clearpage
 \section{Continuous}
 
-\subsection{Laplace Transform}
-
-\sincludepdf[pages={1}]{scan/11211301.pdf}
+\sincludepdf[pages={1},
+		pagecommand=\subsection{Laplace Transform}\subsubsection*{Example 1}
+	]{scan/11211301.pdf}
 
 \subsection{Second Order System From Specifications}
 
@@ -126,8 +128,9 @@ and setting time ($T_s$) are one example.
 			pagecommand=\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
+% {{{ Pole Placement, Polynomial Matchin, Example 1
 \sincludepdf[pages={4},
-			pagecommand=\subsection{Pole Placement}\subsubsection*{Example 1}
+			pagecommand=\subsection{Pole Placement, Polynomial Matching}\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
 The response of this system is show in Figure \ref{fig:pps2s4_plot}.
@@ -146,17 +149,64 @@ in Listing \ref{lst:pps2s4_plot}.
 	caption={Matlab script to plot response of Pole Place controller.},
 	label=lst:pps2s4_plot,
 ]{../pole_placement_cont/pps2s4_plot.m}
+% }}}
+
+% {{{ Example 2
+\sincludepdf[pages={2},
+			pagecommand=\paragraph{Example 2}
+	]{scan/11231301.pdf}
+\sincludepdf[pages={3}]{scan/11231301.pdf}
+
+The response of this system is show in Figure \ref{fig:pps2s4_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pps2s4_plot}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pole_placement_cont/pps2s1_plot}
+\end{center}
+\caption{Response of controller in continuous domain using Pole Placement.}
+\label{fig:pps2s4_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot response of Pole Place controller.},
+	label=lst:pps2s1_plot,
+]{../pole_placement_cont/pps2s1_plot.m}
+% }}}
+
+% {{{ Example 3
+\sincludepdf[pages={4},
+			pagecommand=\paragraph{Example 3}
+	]{scan/11231301.pdf}
+
+The response of this system is show in Figure \ref{fig:pps2s1a_plot}.
+The Matlab code used to produce this plot is shown
+in Listing \ref{lst:pps2s1a_plot}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../pole_placement_cont/pps2s1a_plot}
+\end{center}
+\caption{Response of controller in continuous domain found using algebraic methods.}
+\label{fig:pps2s1a_plot}
+\end{figure}
+
+\lstinputlisting[
+	caption={Matlab script to plot response of Pole Place controller.},
+	label=lst:pps2s1a_plot,
+]{../pole_placement_cont/pps2s1a_plot.m}
+% }}}
 
 \clearpage
-\subsection{Steady State Performance}
-
 \subsection{Pole Placement, Diophantine}
 
+\subsection{Steady State Performance (Error)}
+
 % {{{ PID Controller Design
-\subsection{PID Controller Design}
 
 \sincludepdf[pages={5},
-			pagecommand=\subsubsection*{Example 1}
+			pagecommand=\subsection{PID Controller Design}\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
 The response of this system is show in Figure \ref{fig:pids2s4_plot}.
@@ -219,16 +269,18 @@ in Listing \ref{lst:pids2s4_plot}.
 
 When designing by discrete equivalents the design is performed
 in the continuous domain and then converted to the discrete domain.
-This is in contrast to direct design (Section \ref{sec:dd}) where
-it is designed in the discrete domain without using the continuous domain.
+This is in contrast to Direct Design (Section \ref{sec:dd}) where
+the designed is performed in the discrete domain.
 
 To check stability, entire system must be in Z-domain.
-
-
 
 \sincludepdf[pages={10},
 			pagecommand=\subsubsection{Mapping: $z=e^{sT}$}\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\paragraph{Example 2}
+	]{scan/11231301.pdf}
 
 \sincludepdf[pages={9},
 			pagecommand=\subsubsection{Mapping: Forward, Backward, Trapezoid}\paragraph{Example 1}
@@ -247,6 +299,13 @@ To check stability, entire system must be in Z-domain.
 		]{scan/11221301.pdf}
 
 \subsubsection{Digital PID, Ghandakly's Method}
+
+\subsection{Analytic Design Method ($K_v$)}
+
+The Analytical Design Method\autocite[Pg. 242]{ogata1995discrete}
+is unique in that it minimizes the steady state
+error for both a step and a ramp input.
+
 
 % {{{ Algorithm (Z-Domain) to Difference Equation
 \subsection{Algorithm (Z-Domain) to Difference Equation}
@@ -342,6 +401,7 @@ E=
 % {{{ Zero Order Hold
 \clearpage
 \subsubsection{Zero Order Hold}
+\label{sec:zoh}
 
 A Zero Order Hold converts a S-domain system to the Z-domain.
 It is effectively the same as putting an D/A converter before
@@ -414,11 +474,8 @@ Gz = c2d(Gs, T, 'ZOH');
 \subsection{Direct Design ($K$)}
 \label{sec:dd}
 
-For Direct Design the system is in the form shown in Figure \ref{fig:dd}.
-For more information refer to Ogata\autocite[Pg. 517]{ogata1995discrete}.
-
 % {{{ dd figure
-\begin{figure}
+\begin{figure}[h!]
 
 \begin{center}
 \tikzstyle{block}=[draw,minimum size=2.4em]
@@ -465,7 +522,18 @@ the plant and $D$ (${\beta}/{\alpha}$) is the controller.}
 \end{figure}
 % }}}
 
-\clearpage
+A Direct Design system has several characteristics as shown
+in Figure \ref{fig:dd}.
+The controller ($D$) is in the feedback loop and there is a gain ($K$)
+on the input.
+
+A controller is found by first converting the plant ($G$) in to discrete form
+using a Zero Order Hold (Section \ref{sec:zoh}).
+Then the poles are placed according to roots given by the designer.
+Roots may need to be added to correct the order so that the Diophantine
+Equation can be used to find $\alpha$ and $\beta$.
+Examples of this process are included below.
+For a detailed examination refer to Ogata\autocite[Pg. 517]{ogata1995discrete}.
 
 \sincludepdf[pages=1,
 			pagecommand=\subsubsection*{Example: $\dfrac{1}{s^2}$}
@@ -476,6 +544,7 @@ Listing \ref{lst:dd1s2_init} shows the Matlab code used to perform
 these calculations.
 Listing \ref{lst:dd1s2_plot} shows the Matlab code to plot the response.
 Figure \ref{fig:dd1s2_plot} shows the response.
+The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
 
 \lstinputlisting[
 	caption={Matlab script to find Direct Design of double integrator.},
@@ -576,6 +645,7 @@ Partial feedback with estimated.
 \appendix
 
 \section{Sylvester Matrix Generation in Matlab}
+\label{app:sylvester}
 
 \lstinputlisting[
 	caption={Matlab function to calculate a Sylvester Matrix.},
