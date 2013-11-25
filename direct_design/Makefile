@@ -1,8 +1,12 @@
 
-all: dd1s2_plot.pdf
+all: dd1s2_plot.pdf dd1s2r_plot.pdf \
+	dd1s2s_plot.pdf dd1s2sr_plot.pdf
 
-dd1s2_plot.eps: dd1s2_plot.m
+%.eps: %.m
 	octave $<
 
-dd1s2_plot.pdf: dd1s2_plot.eps
+%.pdf: %.eps
 	epspdf $<
+
+clean:
+	-rm -f *.eps *.pdf

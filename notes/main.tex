@@ -70,18 +70,14 @@ Jeremiah Mahler \texttt{<jmmahler@gmail.com>} \\
 \section{Introduction}
 
 This document is a collection of notes on control system design.
-The author collected this information while taking two control systems
+The author collected these while taking several control systems
 classes at California State University Chico taught by Dr. Adel Ghandakly.
-The first was an introduction to control systems (EECE 482) and
-the second was an advanced control systems engineering (EECE 682).
-The former focused on continuous systems whereas the latter was on
-discrete.
+The first was an Introduction to Control Systems (EECE 482) and
+the second was Computer Control of Dynamic Systems (EECE 682).
+The former focused on continuous systems whereas the latter focused on
+digital systems suitable for implentation in a computer.
 
-Many of the examples are hand written and place in line.
-It would be nice to have these properly formatted in \LaTeX but
-for the time being hand written is more expedient.
-
-Code is included for most examples.
+Matlab code is included for most examples.
 They have been tested with Octave\autocite{octave},
 an open source Matlab equivalent.
 
@@ -97,20 +93,22 @@ Plants denoted by $G(s)$, systems by $H(s)$ and controllers by $D(s)$.
 {\tabulinesep=1.5mm
 \begin{tabu}{|c|l|}
 \hline
-$\displaystyle G(s) = \dfrac{1}{s^2}$ & ZOH (Section \ref{sec:zoh}), Direct Design (Section \ref{sec:dd}), double integrator \\
-$\displaystyle G(s) = \frac{1}{(s + 1)^2}$ & \\
-$\displaystyle H(s) = \frac{10s + 1}{1 + s}$ & \\
-$\displaystyle G(s) = \frac{a}{s(s + a)}$ & Mapping (Section \ref{sec:mapzest}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle G(s) = \frac{1}{s(s + 1)}$ & Pole Placement (Section \ref{sec:pp}), ZOH (Section \ref{sec:zoh}), Direct Design ($K$) (Section \ref{sec:dd}) \\
 $\displaystyle G(s) = \frac{1}{s(s + 7)}$ & \\
-$\displaystyle G(s) = \frac{1}{s(s + 1)}$ & Pole Placement (Section \ref{sec:pp}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle G(s) = \frac{a}{s(s + a)}$ & Mapping (Section \ref{sec:mapzest}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle G(s) = \frac{1}{(s + 1)^2}$ & \\
+$\displaystyle G(s) = \frac{1}{s(s + 0.4)}$ & PID (Section \ref{sec:pid}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle G(s) = \dfrac{1}{s^2}$ & ZOH (Section \ref{sec:zoh}), Direct Design (Section \ref{sec:dd}), double integrator \\
+$\displaystyle G(s) = \frac{10}{(s + 0.1)(s + 0.2)}$ & \\
+$\displaystyle G(z) = 0.0484 \frac{z + 0.9672}{(z - 1)(z - 0.9048)}$ & antenna model\autocite[Pg. 261]{franklin1998digital} \\
+\hline
+$\displaystyle H(s) = \frac{10s + 1}{1 + s}$ & \\
+$\displaystyle H(s) = \frac{20}{s^2 + 4s + 20}$ &  System From Specs (Section \ref{sfs:ex1}), Pole Placement (\ref{sec:pp}) \\
+$\displaystyle H(s) = \frac{10}{s^2 + s + 1}$ & \\
+\hline
 $\displaystyle D(s) = \frac{149s + 880}{s + 47}$ & Pole Placement (Section \ref{sec:pp}) \\
 $\displaystyle D(s) = \frac{(s + 7)}{1.5 + 2.5 + s^2}$ & \\
 $\displaystyle D(s) = \frac{20s^2 + 20s}{s^2 + 4s}$ & Pole Placement (Section \ref{sec:pp}) \\
-$\displaystyle G(s) = \frac{1}{s(s + 0.4)}$ & PID (Section \ref{sec:pid}), ZOH (Section \ref{sec:zoh}) \\
-$\displaystyle H(s) = \frac{10}{s^2 + s + 1}$ & \\
-$\displaystyle G(s) = \frac{10}{(s + 0.1)(s + 0.2)}$ & \\
-$\displaystyle H(s) = \frac{20}{s^2 + 4s + 20}$ &  System From Specs (Section \ref{sfs:ex1}), Pole Placement (\ref{sec:pp}) \\
-$\displaystyle G(z) = 0.0484 \frac{z + 0.9672}{(z - 1)(z - 0.9048)}$ & antenna model\autocite[Pg. 261]{franklin1998digital} \\
 \hline
 \end{tabu}}
 
@@ -397,6 +395,7 @@ Notice that the response does not agree with the calculated error.
 % {{{ S-Domain to Z-Domain
 \section{S-Domain to Z-Domain}
 %\section{Design by Z-Domain Equivalents}
+\label{sec:mapping}
 
 When designing by discrete equivalents the design is performed
 in the continuous domain and then converted to the discrete domain.
@@ -431,6 +430,98 @@ a stable system.
 		]{scan/11221301.pdf}
 
 \subsection{Digital PID, Ghandakly's Method}
+
+% }}}
+
+% {{{ Zero Order Hold
+\clearpage
+\section{Zero Order Hold}
+\label{sec:zoh}
+
+A Zero Order Hold converts a S-domain system to the Z-domain.
+It is effectively the same as putting an D/A converter before
+the continuous system.
+In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
+
+The Zero Order Hold is typically used for $G(s)$, the plant/model.
+Mapping operations such as Forward, Backward, etc
+(Section \label{sec:mapping}) are not typically used.
+
+% {{{ ZOH figure
+\begin{figure}
+\begin{center}
+\tikzstyle{block}=[draw,minimum size=2.4em]
+\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
+%\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
+
+	% place all the block, points, relative to each other
+	\node [coordinate,node distance=2cm] (u) {};
+	\node [block,right of=u] (da) {$D/A$};
+	\node [coordinate,right of=da,node distance=2cm] (d) {};
+	\node [block,right of=da] (g) {$G(s)$};
+	\node [coordinate,right of=g,node distance=2cm] (y) {};
+
+	\node [block,below of=d] (gz) {$G(z)$};
+	\node [coordinate,below of=u,node distance=2cm] (uz) {};
+	\node [coordinate,below of=y,node distance=2cm] (yz) {};
+
+	% connect all the nodes and points
+	\path[->] (u) edge node {} (da);
+	\path[->] (da) edge node {} (g);
+	\path[->] (g) edge node {} (y);
+
+	\path[->] (uz) edge node {} (gz);
+	\path[->] (gz) edge node {} (yz);
+
+\end{tikzpicture}
+\end{center}
+
+\caption{A Zero Order Hold in Simulink created by preceding
+a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
+\label{fig:simulinkzoh}
+\end{figure}
+% }}}
+
+\begin{align}
+	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
+\end{align}
+
+All of these examples can be verified in Matlab using
+code as shown below.
+There may be small differences due to round off errors.
+
+\begin{lstlisting}
+% Matlab
+Bs = [1];
+As = [1 0];
+Gs = tf(Bs, As);
+Gz = c2d(Gs, T, 'ZOH');
+\end{lstlisting}
+
+\sincludepdf[pages={8},
+			pagecommand=\subsection*{Example 1}
+	]{scan/11211301.pdf}
+
+\sincludepdf[pages={6},
+			pagecommand=\subsection*{Example 2}
+		]{scan/11221301.pdf}
+\sincludepdf[pages={7}]{scan/11221301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\subsection*{Example 3}
+		]{scan/11221301.pdf}
+\sincludepdf[pages={2}]{scan/11221301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\subsection*{Example 4}
+		]{scan/11241301.pdf}
+\sincludepdf[pages={2}]{scan/11241301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\subsection*{Example 5}
+		]{scan/11251301.pdf}
+\sincludepdf[pages={2}]{scan/11251301.pdf}
 
 % }}}
 
@@ -550,86 +641,9 @@ E=
 
 % }}}
 
-% {{{ Zero Order Hold
+% {{{ Direct Design ($K$), Diophantine
 \clearpage
-\section{Zero Order Hold}
-\label{sec:zoh}
-
-A Zero Order Hold converts a S-domain system to the Z-domain.
-It is effectively the same as putting an D/A converter before
-the continuous system.
-In fact this is exactly what is done in Simulink (Figure \ref{fig:simulinkzoh}).
-
-% {{{ ZOH figure
-\begin{figure}
-\begin{center}
-\tikzstyle{block}=[draw,minimum size=2.4em]
-\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
-%\tikzstyle{init} = [pin edge={to-,thin,black}]
-\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
-
-	% place all the block, points, relative to each other
-	\node [coordinate,node distance=2cm] (u) {};
-	\node [block,right of=u] (da) {$D/A$};
-	\node [coordinate,right of=da,node distance=2cm] (d) {};
-	\node [block,right of=da] (g) {$G(s)$};
-	\node [coordinate,right of=g,node distance=2cm] (y) {};
-
-	\node [block,below of=d] (gz) {$G(z)$};
-	\node [coordinate,below of=u,node distance=2cm] (uz) {};
-	\node [coordinate,below of=y,node distance=2cm] (yz) {};
-
-	% connect all the nodes and points
-	\path[->] (u) edge node {} (da);
-	\path[->] (da) edge node {} (g);
-	\path[->] (g) edge node {} (y);
-
-	\path[->] (uz) edge node {} (gz);
-	\path[->] (gz) edge node {} (yz);
-
-\end{tikzpicture}
-\end{center}
-
-\caption{A Zero Order Hold in Simulink created by preceding
-a $G(s)$ system with a D/A converter to produce a $G(z)$ system.}
-\label{fig:simulinkzoh}
-\end{figure}
-% }}}
-
-\begin{align}
-	G(z) &= (1 - z^{-1}) Z \left[ \frac{G(s)}{s} \right]
-\end{align}
-
-\begin{lstlisting}
-% Matlab
-Gs = tf(Bs, As);
-Gz = c2d(Gs, T, 'ZOH');
-\end{lstlisting}
-
-\sincludepdf[pages={8},
-			pagecommand=\subsection*{Example 1}
-	]{scan/11211301.pdf}
-
-\sincludepdf[pages={6},
-			pagecommand=\subsection*{Example 2}
-		]{scan/11221301.pdf}
-\sincludepdf[pages={7}]{scan/11221301.pdf}
-
-\sincludepdf[pages={1},
-			pagecommand=\subsection*{Example 3}
-		]{scan/11221301.pdf}
-\sincludepdf[pages={2}]{scan/11221301.pdf}
-
-\sincludepdf[pages={1},
-			pagecommand=\subsection*{Example 4}
-		]{scan/11241301.pdf}
-\sincludepdf[pages={2}]{scan/11241301.pdf}
-
-% }}}
-
-% {{{ Direct Design
-\clearpage
-\section{Direct Design ($K$)}
+\section{Direct Design ($K$), Diophantine}
 \label{sec:dd}
 
 % {{{ dd figure
@@ -680,28 +694,35 @@ the plant and $D$ (${\beta}/{\alpha}$) is the controller.}
 \end{figure}
 % }}}
 
-A Direct Design system has several characteristics as shown
-in Figure \ref{fig:dd}.
-The controller ($D$) is in the feedback loop and there is a gain ($K$)
-on the input.
+The general structure for a Direct Design system is shown in
+Figure \ref{fig:dd}.
+This is different that previous designs in that the controller ($D$)
+is in the feedback loop and there is a gain ($K$) on the input.
 
-A controller is found by first converting the plant ($G$) in to discrete form
-using a Zero Order Hold (Section \ref{sec:zoh}).
+A controller is found by first converting the plant ($G(s)$) in to discrete
+form using a Zero Order Hold (Section \ref{sec:zoh}).
 Then the poles are placed according to roots given by the designer.
 Roots may need to be added to correct the order so that the Diophantine
 Equation can be used to find $\alpha$ and $\beta$.
 Examples of this process are included below.
 For a detailed examination refer to Ogata\autocite[Pg. 517]{ogata1995discrete}.
 
+\begin{align}
+	H &= \frac{y}{u} \notag \\
+	H &= K \frac{G}{1 + D G} \\
+	  &= K \frac{B \alpha}{A \alpha + B \beta}
+\end{align}
+
+% {{{ Example 1
 \sincludepdf[pages=1,
-			pagecommand=\subsection*{Example: $\dfrac{1}{s^2}$}
+			pagecommand=\subsection*{Example 1}
 	]{scan/11211302.pdf}
 \sincludepdf[pages=2-5]{scan/11211302.pdf}
 
 Listing \ref{lst:dd1s2_init} shows the Matlab code used to perform
 these calculations.
-Listing \ref{lst:dd1s2_plot} shows the Matlab code to plot the response.
-Figure \ref{fig:dd1s2_plot} shows the response.
+Listing \ref{lst:dd1s2_plot} shows the Matlab code to plot the step response
+as shown in Figure \ref{fig:dd1s2_plot}.
 The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
 
 \lstinputlisting[
@@ -709,6 +730,7 @@ The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
 	label=lst:dd1s2_init,
 ]{../direct_design/dd1s2_init.m}
 
+\clearpage
 \lstinputlisting[
 	caption={Matlab script to plot the response of the double integrator.},
 	label=lst:dd1s2_plot,
@@ -718,10 +740,82 @@ The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
 \begin{center}
 \includegraphics[scale=0.6]{../direct_design/dd1s2_plot}
 \end{center}
-\caption{Response of double integrator for controller built
+\caption{Step response of double integrator for controller built
 using Direct Design. Uses a time step of 0.2 seconds.}
 \label{fig:dd1s2_plot}
 \end{figure}
+
+\clearpage
+Listing \ref{lst:dd1s2r_plot} shows the Matlab code to plot the ramp response
+as shown in Figure \ref{fig:dd1s2r_plot}.
+
+\lstinputlisting[
+	caption={Matlab script to plot the ramp response of the double integrator.},
+	label=lst:dd1s2r_plot,
+]{../direct_design/dd1s2r_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../direct_design/dd1s2r_plot}
+\end{center}
+\caption{Ramp response of double integrator for controller built
+using Direct Design. Uses a time step of 0.2 seconds.}
+\label{fig:dd1s2r_plot}
+\end{figure}
+
+% }}}
+
+% {{{ Example 2
+\sincludepdf[pages=3,
+			pagecommand=\subsection*{Example 2}
+	]{scan/11251301.pdf}
+\sincludepdf[pages=4-6]{scan/11251301.pdf}
+
+Listing \ref{lst:dd1s2s_init} shows the Matlab code used to perform
+these calculations.
+Listing \ref{lst:dd1s2s_plot} shows the Matlab code to plot the step response
+as shown in Figure \ref{fig:dd1s2s_plot}.
+The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
+
+\lstinputlisting[
+	caption={Matlab script to perform the Direct Design calculations.},
+	label=lst:dd1s2s_init,
+]{../direct_design/dd1s2s_init.m}
+
+\clearpage
+\lstinputlisting[
+	caption={Matlab script to plot the step response.},
+	label=lst:dd1s2s_plot,
+]{../direct_design/dd1s2s_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../direct_design/dd1s2s_plot}
+\end{center}
+\caption{Step response of controller built
+using Direct Design. Uses a time step of 0.2 seconds.}
+\label{fig:dd1s2s_plot}
+\end{figure}
+
+\clearpage
+Listing \ref{lst:dd1s2sr_plot} shows the Matlab code to plot the ramp response
+as shown in Figure \ref{fig:dd1s2sr_plot}.
+
+\lstinputlisting[
+	caption={Matlab script to plot the ramp response.},
+	label=lst:dd1s2sr_plot,
+]{../direct_design/dd1s2sr_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../direct_design/dd1s2sr_plot}
+\end{center}
+\caption{Ramp response of controller built
+using Direct Design. Uses a time step of 0.2 seconds.}
+\label{fig:dd1s2sr_plot}
+\end{figure}
+
+% }}}
 
 % }}}
 
