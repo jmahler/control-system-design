@@ -6,6 +6,7 @@
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{graphviz}
+\usepackage{tabu}
 
 \usepackage[backend=biber,autocite=footnote,
 			bibstyle=authortitle,citestyle=verbose-inote]{biblatex}
@@ -80,25 +81,55 @@ Many of the examples are hand written and place in line.
 It would be nice to have these properly formatted in \LaTeX but
 for the time being hand written is more expedient.
 
+Code is included for most examples.
+They have been tested with Octave\autocite{octave},
+an open source Matlab equivalent.
+
 % {{{ Common Plants/Systems
+\clearpage
 \section{Common Plants/Systems}
 
 \nocite{ogata1995discrete}
 \nocite{franklin1998digital}
 
-Plants denoted by $G(s)$ and systems by $H(s)$.
+Plants denoted by $G(s)$, systems by $H(s)$ and controllers by $D(s)$.
 
-\begin{align*}
-	G(s) &= \frac{1}{s^2} & \mbox{(Double Integrator)}\\
-	G(s) &= \frac{1}{(s + 1)^2} \\
-	H(s) &= \frac{1 + 10s}{1 + s} \\
-	G(s) &= \frac{a}{s(s + a)} \\
-	G(s) &= \frac{1}{s(s + 1)} \\
-	G(s) &= \frac{1}{s(s + 0.4)} \\
-	G(s) &= \frac{10}{s^2 + s + 1} \\
-	G(s) &= \frac{10}{(s + 0.1)(s + 0.2)} \\
-	H(s) &= \frac{20}{s^2 + 4s + 20} & \mbox{(from specs: $Tr = 0.5$, $\%OS = 25$)}
-\end{align*}
+{\tabulinesep=1.5mm
+\begin{tabu}{|c|l|}
+\hline
+$\displaystyle G(s) = \dfrac{1}{s^2}$ & ZOH (Section \ref{sec:zoh}), Direct Design (Section \ref{sec:dd}), double integrator \\
+$\displaystyle G(s) = \frac{1}{(s + 1)^2}$ & \\
+$\displaystyle H(s) = \frac{10s + 1}{1 + s}$ & \\
+$\displaystyle G(s) = \frac{a}{s(s + a)}$ & Mapping (Section \ref{sec:mapzest}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle G(s) = \frac{1}{s(s + 7)}$ & \\
+$\displaystyle G(s) = \frac{1}{s(s + 1)}$ & Pole Placement (Section \ref{sec:pp}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle D(s) = \frac{149s + 880}{s + 47}$ & Pole Placement (Section \ref{sec:pp}) \\
+$\displaystyle D(s) = \frac{(s + 7)}{1.5 + 2.5 + s^2}$ & \\
+$\displaystyle D(s) = \frac{20s^2 + 20s}{s^2 + 4s}$ & Pole Placement (Section \ref{sec:pp}) \\
+$\displaystyle G(s) = \frac{1}{s(s + 0.4)}$ & PID (Section \ref{sec:pid}), ZOH (Section \ref{sec:zoh}) \\
+$\displaystyle H(s) = \frac{10}{s^2 + s + 1}$ & \\
+$\displaystyle G(s) = \frac{10}{(s + 0.1)(s + 0.2)}$ & \\
+$\displaystyle H(s) = \frac{20}{s^2 + 4s + 20}$ &  System From Specs (Section \ref{sfs:ex1}), Pole Placement (\ref{sec:pp}) \\
+$\displaystyle G(z) = 0.0484 \frac{z + 0.9672}{(z - 1)(z - 0.9048)}$ & antenna model\autocite[Pg. 261]{franklin1998digital} \\
+\hline
+\end{tabu}}
+
+%\begin{align}
+%	G(s) &= \frac{1}{s^2} & \mbox{(Double Integrator)}\\
+%	G(s) &= \frac{1}{(s + 1)^2} \\
+%	H(s) &= \frac{1 + 10s}{1 + s} \\
+%	G(s) &= \frac{a}{s(s + a)} \\
+%	G(s) &= \frac{1}{s(s + 1)} \\
+%	G(s) &= \frac{1}{s(s + 7)} \\
+%	D(s) &= \frac{(s + 7)}{1.5 + 2.5 + s^2} \\
+%	G(s) &= \frac{1}{s(s + 0.4)} \\
+%	H(s) &= \frac{10}{s^2 + s + 1} \\
+%	G(s) &= \frac{10}{(s + 0.1)(s + 0.2)} \\
+%	H(s) &= \frac{20}{s^2 + 4s + 20} & \mbox{(from specs: $Tr = 0.5$, $\%OS = 25$)} \\
+%	G(z) &= 0.0484 \frac{z + 0.9672}{(z - 1)(z - 0.9048)}\label{eq:antenna}
+%\end{align}
+%Equation \ref{eq:antenna} describes an antenna
+%model\autocite[Pg. 261]{franklin1998digital}.
 
 % }}}
 
@@ -123,13 +154,18 @@ and setting time ($T_s$) are one example.
 \end{align*}
 
 \sincludepdf[pages={3},
-			pagecommand=\subsection*{Example 1}
+			pagecommand=\subsection*{Example 1}\label{sfs:ex1},
 		]{scan/11221301.pdf}
 % }}}
 
-% {{{ Pole Placement, Polynomial Matching, Example 1
+\sincludepdf[pages={3},
+		pagecommand=\section{Final Value Theorem}
+		]{scan/11241301.pdf}
+
+% {{{ Pole Placement, Polynomial Matching
+% Example 1
 \sincludepdf[pages={2},
-	pagecommand=\section{Pole Placement, Polynomial Matching}\label{sec:pp}\subsection*{Example 1}
+	pagecommand=\section{Pole Placement (S-Domain)}\label{sec:pp}\subsection*{Example 1}\label{sec:pp:ex1}
 	]{scan/11231301.pdf}
 \sincludepdf[pages={3}]{scan/11231301.pdf}
 
@@ -175,9 +211,7 @@ It can be seen that it agrees with calculated steady state error.
 	label=lst:pps2s1r_plot,
 ]{../pole_placement_cont/pps2s1r_plot.m}
 
-% }}}
-
-% {{{ Example 3
+% {{{ Example 2
 \clearpage
 \sincludepdf[pages={4},
 			pagecommand=\subsection*{Example 2}
@@ -223,6 +257,8 @@ response agrees with the plot.
 		found using algebraic methods.},
 	label=lst:pps2s1ar_plot,
 ]{../pole_placement_cont/pps2s1ar_plot.m}
+
+% }}}
 
 % }}}
 
@@ -276,7 +312,7 @@ See Section \ref{sec:pp} for examples with steady state error ($\varepsilon_{ss}
 % {{{ PID Controller Design
 
 \sincludepdf[pages={5},
-			pagecommand=\section{PID Controller Design}\subsection*{Example 1}
+	pagecommand=\section{PID Controller Design}\label{sec:pid}\subsection*{Example 1}
 		]{scan/11221301.pdf}
 
 % calculation of step response
@@ -322,9 +358,9 @@ Notice that the response does not agree with the calculated error.
 
 % }}}
 
-% {{{ State Space to Transfer Function (S-domain)
+% {{{ State Space to Transfer Function (S-Domain)
 \sincludepdf[pages={2},
-			pagecommand=\section{State Space to Transfer Function (S-domain)}\subsection*{Example 1}
+			pagecommand=\section{State Space to Transfer Function (S-Domain)}\subsection*{Example 1}
 	]{scan/11211301.pdf}
 \sincludepdf[pages={3},
 		pagecommand={}
@@ -332,11 +368,11 @@ Notice that the response does not agree with the calculated error.
 
 % }}}
 
-% {{{ Transfer Function (S-domain) to State Space
+% {{{ Transfer Function (S-Domain) to State Space
 
 \clearpage
 \sincludepdf[pages={4},
-			pagecommand=\section{Transfer Function (S-domain) to State Space}\subsection*{Example 1}
+			pagecommand=\section{Transfer Function (S-Domain) to State Space}\subsection*{Example 1}
 		]{scan/11211301.pdf}
 \sincludepdf[pages={5}]{scan/11211301.pdf}
 
@@ -358,8 +394,8 @@ Notice that the response does not agree with the calculated error.
 	]{scan/11211301.pdf}
 % }}}
 
-% {{{ S-domain to Z-domain
-\section{S-domain to Z-domain}
+% {{{ S-Domain to Z-Domain
+\section{S-Domain to Z-Domain}
 %\section{Design by Z-Domain Equivalents}
 
 When designing by discrete equivalents the design is performed
@@ -367,10 +403,11 @@ in the continuous domain and then converted to the discrete domain.
 This is in contrast to Direct Design (Section \ref{sec:dd}) where
 the designed is performed in the discrete domain.
 
-To check stability, entire system must be in Z-domain.
+This method is straightforward however it doesn't always result in
+a stable system.
 
 \sincludepdf[pages={10},
-			pagecommand=\subsection{Mapping: $z=e^{sT}$}\subsection*{Example 1}
+		pagecommand=\subsection{Mapping: $z=e^{sT}$}\label{sec:mapzest}\subsubsection*{Example 1}
 		]{scan/11221301.pdf}
 
 \sincludepdf[pages={1},
@@ -397,9 +434,18 @@ To check stability, entire system must be in Z-domain.
 
 % }}}
 
-\sincludepdf[pages={3},
-		pagecommand=\section{Final Value Theorem}
-		]{scan/11241301.pdf}
+% {{{ Direct Design Method of Ragazzini
+\section{Direct Design Method of Ragazzini}
+
+One method for finding $D(z)$, if $H(z)$ and $G(z)$ are given,
+is to simply solve for $D(z)$\autocite[Pg. 265]{franklin1998digital}.
+
+\begin{align}
+	H(z) &= \frac{D(z)G(z)}{1 + D(z)G(z)} \notag \\
+	D(z) &= \frac{1}{G(z)} \frac{H(z)}{1 - H(z)}
+\end{align}
+
+% }}}
 
 % {{{ $K_v$ Direct Design Method
 \section{$K_v$ Direct Design Method}
