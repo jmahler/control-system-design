@@ -105,6 +105,8 @@ $\displaystyle G(z) = 0.0484 \frac{z + 0.9672}{(z - 1)(z - 0.9048)}$ & antenna m
 $\displaystyle H(s) = \frac{10s + 1}{1 + s}$ & \\
 $\displaystyle H(s) = \frac{20}{s^2 + 4s + 20}$ &  System From Specs (Section \ref{sfs:ex1}), Pole Placement (\ref{sec:pp}) \\
 $\displaystyle H(s) = \frac{10}{s^2 + s + 1}$ & \\
+$\displaystyle \frac{B_m}{A_m} = \frac{0.62z - 0.3}{z^2 - 1.2z + 0.52}$ & Model Matching (Section \ref{sec:mm})\autocite[Pg. 532]{ogata1995discrete} \\
+
 \hline
 $\displaystyle D(s) = \frac{149s + 880}{s + 47}$ & Pole Placement (Section \ref{sec:pp}) \\
 $\displaystyle D(s) = \frac{(s + 7)}{1.5 + 2.5 + s^2}$ & \\
@@ -392,45 +394,20 @@ Notice that the response does not agree with the calculated error.
 	]{scan/11211301.pdf}
 % }}}
 
-% {{{ S-Domain to Z-Domain
-\section{S-Domain to Z-Domain}
-%\section{Design by Z-Domain Equivalents}
-\label{sec:mapping}
+% {{{ Algorithm (Z-Domain) to Difference Equation
+\section{Algorithm (Z-Domain) to Difference Equation}
 
-When designing by discrete equivalents the design is performed
-in the continuous domain and then converted to the discrete domain.
-This is in contrast to Direct Design (Section \ref{sec:dd}) where
-the designed is performed in the discrete domain.
+\sincludepdf[pages={11},
+			pagecommand=\subsection*{Example 1}
+		]{scan/11211301.pdf}
 
-This method is straightforward however it doesn't always result in
-a stable system.
+\sincludepdf[pages={12},
+			pagecommand=\subsection*{Example 2}
+		]{scan/11211301.pdf}
 
-\sincludepdf[pages={10},
-		pagecommand=\subsection{Mapping: $z=e^{sT}$}\label{sec:mapzest}\subsubsection*{Example 1}
-		]{scan/11221301.pdf}
-
-\sincludepdf[pages={1},
-			pagecommand=\subsubsection*{Example 2}
-	]{scan/11231301.pdf}
-
-\sincludepdf[pages={9},
-			pagecommand=\subsection{Mapping: Forward, Backward, Trapezoid}\subsubsection*{Example 1}
-	]{scan/11211301.pdf}
-
-\sincludepdf[pages={10},
-			pagecommand=\subsubsection*{Example 2}
-	]{scan/11211301.pdf}
-
-\sincludepdf[pages={8},
-			pagecommand=\subsubsection*{Example 3}
-		]{scan/11221301.pdf}
-
-\sincludepdf[pages={9},
-			pagecommand=\subsubsection*{Example 4}
-		]{scan/11221301.pdf}
-
-\subsection{Digital PID, Ghandakly's Method}
-
+\sincludepdf[pages={13},
+			pagecommand=\subsection*{Example 3}
+		]{scan/11211301.pdf}
 % }}}
 
 % {{{ Zero Order Hold
@@ -525,6 +502,46 @@ Gz = c2d(Gs, T, 'ZOH');
 
 % }}}
 
+% {{{ Mapping (S-domain to Z-domain)
+\section{Mapping (S-Domain to Z-Domain)}
+\label{sec:mapping}
+
+When designing by discrete equivalents the design is performed
+in the continuous domain and then converted to the discrete domain.
+This is in contrast to Direct Design (Section \ref{sec:dd}) where
+the designed is performed in the discrete domain.
+
+This method is straightforward however it doesn't always result in
+a stable system.
+
+\sincludepdf[pages={10},
+		pagecommand=\subsection{Mapping: $z=e^{sT}$}\label{sec:mapzest}\subsubsection*{Example 1}
+		]{scan/11221301.pdf}
+
+\sincludepdf[pages={1},
+			pagecommand=\subsubsection*{Example 2}
+	]{scan/11231301.pdf}
+
+\sincludepdf[pages={9},
+			pagecommand=\subsection{Mapping: Forward, Backward, Trapezoid}\subsubsection*{Example 1}
+	]{scan/11211301.pdf}
+
+\sincludepdf[pages={10},
+			pagecommand=\subsubsection*{Example 2}
+	]{scan/11211301.pdf}
+
+\sincludepdf[pages={8},
+			pagecommand=\subsubsection*{Example 3}
+		]{scan/11221301.pdf}
+
+\sincludepdf[pages={9},
+			pagecommand=\subsubsection*{Example 4}
+		]{scan/11221301.pdf}
+
+\subsection{Digital PID, Ghandakly's Method}
+
+% }}}
+
 % {{{ Direct Design Method of Ragazzini
 \section{Direct Design Method of Ragazzini}
 
@@ -548,22 +565,6 @@ The error due to a step input ($K_p$) will also be zero.
 Alternative names for this method are the Direct Method
 of Ragazzini\autocite[Pg. 264]{franklin1998digital} and
 the Analytical Design Method\autocite[Pg. 242]{ogata1995discrete}.
-% }}}
-
-% {{{ Algorithm (Z-Domain) to Difference Equation
-\section{Algorithm (Z-Domain) to Difference Equation}
-
-\sincludepdf[pages={11},
-			pagecommand=\subsection*{Example 1}
-		]{scan/11211301.pdf}
-
-\sincludepdf[pages={12},
-			pagecommand=\subsection*{Example 2}
-		]{scan/11211301.pdf}
-
-\sincludepdf[pages={13},
-			pagecommand=\subsection*{Example 3}
-		]{scan/11211301.pdf}
 % }}}
 
 % {{{ Diophantine Equation
@@ -824,58 +825,125 @@ using Direct Design. Uses a time step of 0.2 seconds.}
 \section{Model Matching ($G_{model}$)}
 \label{sec:mm}
 
-Controller design using Model Matching is similar to Direct Design
-(Section \ref{sec:dd}) except that instead of a gain ($K$) there is
-another transfer function ($G_{model}$).
-For more information refer to Ogata\autocite[Pg. 532]{ogata1995discrete}.
-
-\begin{figure}
-
-\begin{center}
-\tikzstyle{block}=[draw,minimum size=2.4em]
-\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
-%\tikzstyle{init} = [pin edge={to-,thin,black}]
-\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
-
-	% place all the block, points, relative to each other
-	\node [coordinate,node distance=2cm] (u) {u};
-	\node [block,right of=u] (k) {$G_{model}$};
-	\node [sum,right of=k] (s) {};
-	\node [coordinate,below of=s] (ds) {ds};
-	\node [block,right of=ds] (d) {$D(z)$};
-	\node [block,right of=s] (g) {$G(z)$};
-	\node [coordinate,right of=g] (gdy) {};
-	\node [coordinate,right of=gdy,node distance=2cm] (y) {y};
-	\node [coordinate,right of=d] (gd) {gd};
-
-	% add signs to sum
-	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=3mm] {$+$};
-	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=-4mm] {$-$};
-
-	% add labels to G(s) and D(s)
-	\node [right of=g,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{B}{A}$};
-	\node [right of=d,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{\beta}{\alpha}$};
-
-	% connect all the nodes and points
-	\path[->] (u) edge node {$u$} (k);
-	\path[->] (k) edge node {} (s);
-	\path[->] (ds) edge node {} (s);
-	\path[-]  (d) edge node {} (ds);
-	\path[->] (s) edge node {$\epsilon$} (g);
-	\path[-] (g) edge node {} (gdy);
-	\path[->] (gdy) edge node {$y$} (y);
-	\path[-] (gdy) edge node {} (gd);
-	\path[->] (gd) edge node {} (d);
-
-\end{tikzpicture}
-\end{center}
-
-\caption{Model Matching system with $G_{model}$ as input. $G$ is
-the plant and $D$ is the controller.}
-\label{fig:mm}
-\end{figure}
+% {{{ mm figure [disabled]
+% This is the figure was given by Dr. Ghandakly but it
+% doesn't appear to be correct compared to Ogata Pg. 533.
+%\begin{figure}[h!]
+%
+%\begin{center}
+%\tikzstyle{block}=[draw,minimum size=2.4em]
+%\tikzstyle{sum}=[draw,circle,minimum size=1.2em]
+%%\tikzstyle{init} = [pin edge={to-,thin,black}]
+%\begin{tikzpicture}[node distance=2.0cm,auto,>=latex']
+%
+%	% place all the block, points, relative to each other
+%	\node [coordinate,node distance=2cm] (u) {};
+%	\node [block,right of=u] (k) {$G_{model}$};
+%	\node [sum,right of=k] (s) {};
+%	\node [coordinate,below of=s] (ds) {ds};
+%	\node [block,right of=ds] (d) {$D(z)$};
+%	\node [block,right of=s] (g) {$G(z)$};
+%	\node [coordinate,right of=g] (gdy) {};
+%	\node [coordinate,right of=gdy,node distance=2cm] (y) {};
+%	\node [coordinate,right of=d] (gd) {};
+%
+%	% add signs to sum
+%	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=3mm] {$+$};
+%	\node [left of=s,node distance=0cm,xshift=-3mm,yshift=-4mm] {$-$};
+%
+%	% add labels to G(s) and D(s)
+%	\node [right of=g,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{B}{A}$};
+%	\node [right of=d,node distance=0cm,xshift=8mm,yshift=6mm] {$\dfrac{\beta}{\alpha}$};
+%
+%	% connect all the nodes and points
+%	\path[->] (u) edge node {$R$} (k);
+%	\path[->] (k) edge node {} (s);
+%	\path[->] (ds) edge node {} (s);
+%	\path[-]  (d) edge node {} (ds);
+%	\path[->] (s) edge node {$\epsilon$} (g);
+%	\path[-] (g) edge node {} (gdy);
+%	\path[->] (gdy) edge node {$y$} (y);
+%	\path[-] (gdy) edge node {} (gd);
+%	\path[->] (gd) edge node {} (d);
+%
+%\end{tikzpicture}
+%\end{center}
+%
+%\caption{Model Matching system with $G_{model}$ as input. $G$ is
+%the plant and $D$ is the controller.}
+%\label{fig:mm}
+%\end{figure}
 % }}}
 
+Suppose the perfect system was created and then the plant changed.
+How could the system response be reproduced identically with this new plant?
+One solution is to use Model Matching\footnote{If this method was called
+System Matching it would make more sense because it matches $H(z)$.}.
+
+Given a model system ($G_{model}$) a controller is found for the
+given plant ($G(z)$).
+
+\begin{align}
+	\frac{Y(z)}{R(z)} &= G_{model} = \frac{B_m(z)}{A_m(z)}
+\end{align}
+
+For more details refer to Ogata\autocite[Pg. 532]{ogata1995discrete}.
+
+% {{{ Example 1
+\sincludepdf[pages=1,
+			pagecommand=\subsection*{Example 1}
+	]{scan/11261301.pdf}
+\sincludepdf[pages=2-4]{scan/11261301.pdf}
+
+\clearpage
+Listing \ref{lst:mm3679_init} shows the Matlab code used to perform
+these calculations.
+Listing \ref{lst:mm3679_plot} shows the Matlab code to plot the step response
+as shown in Figure \ref{fig:mm3679_plot}.
+The \verb+sylvester+ function is given in Appendix \ref{app:sylvester}.
+
+\lstinputlisting[
+	caption={Matlab script to perform Model Matching for Example 1.},
+	label=lst:mm3679_init,
+]{../model_matching/mm3679_init.m}
+
+\clearpage
+\lstinputlisting[
+	caption={Matlab script to plot the step response of Example 1.},
+	label=lst:mm3679_plot,
+]{../model_matching/mm3679_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../model_matching/mm3679_plot}
+\end{center}
+\caption{Step response of controller built using Model Matching.
+Notice that $G_{model}$ is identical to the whole system as expected.}
+\label{fig:mm3679_plot}
+\end{figure}
+
+\clearpage
+Listing \ref{lst:mm3679r_plot} shows the Matlab code to plot the ramp response
+as shown in Figure \ref{fig:mm3679r_plot}.
+
+\lstinputlisting[
+	caption={Matlab script to plot the ramp response of Example 1.},
+	label=lst:mm3679r_plot,
+]{../model_matching/mm3679r_plot.m}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../model_matching/mm3679r_plot}
+\end{center}
+\caption{Ramp response of controller built using Model Matching.}
+\label{fig:mm3679r_plot}
+\end{figure}
+
+% }}}
+
+% }}}
+
+\clearpage
 \section{Poll Placement with Ackerman's Formula}
 
 \section{State Space, Full Feedback}
@@ -902,7 +970,7 @@ Partial feedback with estimated.
 \lstinputlisting[
 	caption={Matlab function to calculate a Sylvester Matrix.},
 	label=lst:sylvester,
-]{../direct_design/sylvester.m}
+]{../lib/sylvester.m}
 
 
 \section{Quick Reference}

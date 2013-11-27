@@ -10,6 +10,8 @@
 %        s^2
 %
 
+addpath('../lib');
+
 % Designer provided specifications
 T = 0.2;
 % Characteristic polynomial with extra root
