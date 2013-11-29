@@ -14,9 +14,8 @@ discrete domain are included.
 
 Download: ([notes/main.pdf](https://github.com/jmahler/control-system-design/blob/master/notes/main.pdf?raw=true))
 
-Many of the examples Matlab code for performing the calculations
-and plotting the response.  They have all been tested with
-[Octave][octave].
+Many of the examples include Matlab code for performing the calculations
+and plotting the response.  They have been tested with [Octave][octave].
 
  [octave]: http://www.gnu.org/software/octave/
 
