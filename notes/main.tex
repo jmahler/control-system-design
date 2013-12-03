@@ -158,17 +158,30 @@ and setting time ($T_s$) are one example.
 		]{scan/11221301.pdf}
 
 The step response of this system is shown in Figure \ref{fig:spec0525_plot}.
+It can be seen that the specs are met when a unit step is applied.
+Interestingly, these specs are satisfied even if the input signal is
+scaled and shifted as shown by Figure \ref{fig:spec0525s_plot}.
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.6]{../system_specs/spec0525_plot}
+\includegraphics[scale=0.5]{../system_specs/spec0525_plot}
 \end{center}
-\caption{Step response with of system from specs with $Tr = 0.5$
-	and $\%OS = 25$.}
+\caption{Step response for system with $Tr = 0.5$ and $\%OS = 25$.}
 \label{fig:spec0525_plot}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{../system_specs/spec0525s_plot}
+\end{center}
+\caption{Shifted and scaled step response with $Tr = 0.5$
+and $\%OS = 25$ (same as previous).}
+\label{fig:spec0525s_plot}
 \end{figure}
 
 % }}}
 
+\clearpage
 \sincludepdf[pages={3},
 		pagecommand=\section{Final Value Theorem}
 		]{scan/11241301.pdf}
