@@ -1,8 +1,8 @@
 %
-% cl_ex82.m
+% cl_ss512.m
 %
-% Control Law example from Franklin & Powell for Example
-% 8.3 Pg. 288
+% State Space, Control Law
+% full feedback (all observable)
 %
 
 addpath('../lib');
@@ -15,11 +15,11 @@ z1 = [0.9 0.9 0.9 0.9];
 z2 = [(0.9 + 0.05i) (0.9 - 0.5i) (0.8 + 0.4i) (0.8 - 0.4i)];
 
 H = [1 0 0 0];
-A = [0 1 0 0;
-	 -0.91 -0.036 0.91 0.036;
+A = [0 0 1 0;
 	 0 0 0 1;
-	 0.091 0.0036 -0.091 -0.0036];
-n = length(A);
+	 -0.91 0.91 -0.036 0.036;
+	 0.091 -0.091 0.0036 -0.0036];
+n = length(A);  % order
 B = [0; 0; 0; 1];
 C = eye(n);
 D = zeros(n, 1);
