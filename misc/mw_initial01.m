@@ -1,7 +1,7 @@
 %
-% cl_mwinitial.m
+% cl_initial01.m
 %
-% Control Law example provided by Mathworks
+% 'initial' example Mathworks
 %
 %  [http://www.mathworks.com/help/control/ref/initial.html]
 %

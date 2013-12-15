@@ -46,4 +46,4 @@ for i = 0:n
 end
 
 % z = eig(A - B*K)
-K = en*(W\alpha);
+K = real(en*(W\alpha));
