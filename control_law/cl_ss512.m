@@ -73,3 +73,5 @@ axis tight;
 title('Regulator Response, roots: (0.9 + 0.05i) (0.9 - 0.5i) (0.8 + 0.4i) (0.8 - 0.4i)');
 xlabel('time (sec)');
 ylabel('y');
+
+print('cl_ss512.eps', '-depsc2');
