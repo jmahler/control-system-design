@@ -1,5 +1,5 @@
 %
-% cl_ex82.m
+% cl_ex83.m
 %
 % Control Law example from Franklin & Powell for Example
 % 8.3 Pg. 288
@@ -57,8 +57,8 @@ u = zeros([(Tend/T) 1]);
 
 figure(1);
 subplot(2, 1, 1);
-%plot(t1, y1);  % all
-plot(t1, y1(:,1));  % one
+%stairs(t1, y1);  % all
+stairs(t1, y1(:,1));  % one
 grid on;
 axis tight;
 title('Regulator Response, roots: (0.9 0.9 0.9 0.9)');
@@ -66,12 +66,12 @@ title('Regulator Response, roots: (0.9 0.9 0.9 0.9)');
 ylabel('y');
 
 subplot(2, 1, 2);
-%plot(t2, y2);  % all
-plot(t2, y2(:,1));  % one
+%stairs(t2, y2);  % all
+stairs(t2, y2(:,1));  % one
 grid on;
 axis tight;
 title('Regulator Response, roots: (0.9 + 0.05i) (0.9 - 0.5i) (0.8 + 0.4i) (0.8 - 0.4i)');
 xlabel('time (sec)');
 ylabel('y');
 
-print('cl_ex82.eps', '-depsc2');
+print('cl_ex83.eps', '-depsc2');

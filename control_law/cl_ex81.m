@@ -1,7 +1,9 @@
 %
 % cl_ex81.m
 %
-% Control Law example from Franklin & Powell for Examples
+% Control Law, Full Order, No Estimation.
+%
+% Example from Franklin & Powell for Examples
 % 8.1 and 8.2 on Pg. 282-286.
 %
 
@@ -34,8 +36,8 @@ u = zeros([(Tend/T) 1]);
 [y1,t1] = lsim(sysCL1, u, [], x0);
 
 figure(1);
-%plot(t1, y1);  % all
-plot(t1, y1(:,1));  % one
+%stairs(t1, y1);  % all
+stairs(t1, y1(:,1));  % one
 grid on;
 axis tight;
 title('Regulator Response, roots: (0.8 + 0.25i) (0.8 - 0.25i)');

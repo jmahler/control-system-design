@@ -991,9 +991,9 @@ as shown in Figure \ref{fig:mm3679r_plot}.
 \clearpage
 \section{Poll Placement with Ackerman's Formula}
 
-% {{{ Control Law with Full Feedback
+% {{{ Control Law, Full Order, No Prediction
 \clearpage
-\section{Control Law with Full Feedback}
+\section{Control Law, Full Order, No Predicition}
 
 A Control Law system behaves as a regulator as shown in
 Figure \ref{fig:clff1}.
@@ -1040,32 +1040,99 @@ It behaves as a regulator since not input is available.}
 For this example the calculation of $K$ is shown in Listing \ref{lst:clff1}.
 The \verb+myacker+ function is a re-implementation of the Matlab \verb+acker+
 function and is given in Appendix \ref{app:myacker}.
-Figure \ref{fig:cl_ex82} shows the response of this system.
+Figure \ref{fig:cl_ex83} shows the response of this system.
 
 \lstinputlisting[
 	caption={Matlab script to calculate $K$ using Ackermann's formula.},
 	label=lst:clff1,
-]{../control_law/cl_ex82.m}
+]{../control_law/cl_ex83.m}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{../control_law/cl_ex82}
+\includegraphics[scale=0.7]{../control_law/cl_ex83}
 \end{center}
 \caption{Response of Control Law designed regulator system
 for two different sets of roots.}
-\label{fig:cl_ex82}
+\label{fig:cl_ex83}
+\end{figure}
+
+% }}}
+
+% {{{ Control Law, Full Order, Predictor Estimator
+\clearpage
+\section{Control Law, Full Order, Predicitor Estimator}
+
+% TODO
+%A Control Law system behaves as a regulator as shown in
+%Figure \ref{fig:clff1}.
+%In this case it is assumed that all outputs are observable and
+%so are fed back.
+%Later examples will investigate partial feedback with estimation.
+%Ackermann's formula is used to find $K$.
+
+% {{{ fig:clff1  TODO
+%\begin{figure}[hpb!]
+%\begin{center}
+%
+%\begin{tikzpicture}[>=triangle 60,
+%	node distance=14mm, auto]
+%
+%	\node[gain]  	(Gz)	[] 	{$\begin{matrix}
+%									\dot{x} = Ax + Bu \\
+%										 y = Cx + Du
+%								 \end{matrix}$};
+%	\node[gain] 	(K)	[below=of Gz] 	{$-K$};
+%
+%	 \draw [->]
+%	 		(Gz.east) -- ++(15mm,0)
+%			-| ++(0,-10mm)
+%			|- (K.east);
+%
+%	 \draw [<-]
+%	 		(Gz.west) -- ++(-15mm,0)
+%			-| ++(0,-10mm)
+%			|- (K.west);
+%
+%\end{tikzpicture}
+%
+%\end{center}
+%
+%\caption{Control Law system with full feedback.
+%It behaves as a regulator since not input is available.}
+%\label{fig:clff1}
+%\end{figure}
+% }}}
+
+\subsection{Example 1}
+
+% TODO
+%For this example the calculation of $K$ is shown in Listing \ref{lst:clpr1}.
+%The \verb+myacker+ function is a re-implementation of the Matlab \verb+acker+
+%function and is given in Appendix \ref{app:myacker}.
+%Figure \ref{fig:cl_ex82} shows the response of this system.
+
+\lstinputlisting[
+	caption={Matlab script to calculate $K$ and
+		estimate $L$ using Ackermann's formula.},
+	label=lst:clpr1,
+]{../control_law/cl_ex85.m}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{../control_law/cl_ex85}
+\end{center}
+\caption{Response of Control Law system designed with a full
+	order predicitor estimator.  Initial $x$ has one in
+	first position with zeros elsewhere.}
+\label{fig:cl_ex85}
 \end{figure}
 
 % }}}
 
 \clearpage
-\section{State Space, Full Order "predictor" Estimator}
+\section{Control Law, Reduced Order Estimator}
 
-Full feedback but some are estimated.
-
-\section{State Space, Reduced Order Estimator}
-
-Partial feedback with estimated.
+Partial feedback with estimation.
 
 \clearpage
 \printbibliography[heading=bibintoc]
