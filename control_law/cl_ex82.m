@@ -21,7 +21,7 @@ A = [0 1 0 0;
 	 -0.91 -0.036 0.91 0.036;
 	 0 0 0 1;
 	 0.091 0.0036 -0.091 -0.0036];
-n = length(A);
+n = length(A);  % order
 B = [0; 0; 0; 1];
 C = eye(n);
 D = zeros(n, 1);
@@ -57,8 +57,8 @@ u = zeros([(Tend/T) 1]);
 
 figure(1);
 subplot(2, 1, 1);
-%plot(t2, y1);  % all
-plot(t2, y1(:,1));  % one
+%plot(t1, y1);  % all
+plot(t1, y1(:,1));  % one
 grid on;
 axis tight;
 title('Regulator Response, roots: (0.9 0.9 0.9 0.9)');
