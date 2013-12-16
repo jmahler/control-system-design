@@ -37,18 +37,19 @@ sysL = ss((Phi - Gamma*K1 - Lp*H), Lp, eye(n), zeros(2,1), T);
 
 % Build system(s)
 % predicted
-sysCL1 = feedback(Gz*H, sysL*sysK1, -1);
+sysX1 = series(Gz, H);
+sysX2 = series(sysL, sysK1);
+sysCL1 = feedback(sysX1, sysX2, -1);
 sysCL1 = sminreal(sysCL1);
 % full feedback
 sysCL2 = feedback(Gz, sysK1, -1);
 sysCL2 = sminreal(sysCL2);
 
 % Simulate
+u = zeros([(Tend/T) 1]);
 x0 = [1; 0; 0; 0];  % initial x
-u = zeros([(Tend/T) 2]);
 [y1,t1] = lsim(sysCL1, u, [], x0);
 x0 = [1; 0];  % initial x
-u = zeros([(Tend/T) 1]);
 [y2,t2] = lsim(sysCL2, u, [], x0);
 
 % Plot
