@@ -12,7 +12,7 @@ control systems classes.  Topics include: Pole Placement, PID,
 Mapping, Direct Design, Model Matching.  Both the continuous and
 discrete domain are included.
 
-Download: ([notes/main.pdf](https://github.com/jmahler/control-system-design/blob/master/notes/main.pdf?raw=true))
+Download: ([notes/main.pdf](https://github.com/jmahler/control-system-design/blob/build/notes/main.pdf?raw=true))
 
 Many of the examples include Matlab code for performing the calculations
 and plotting the response.  They have been tested with [Octave][octave] but
