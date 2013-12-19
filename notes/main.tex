@@ -1042,20 +1042,20 @@ It behaves as a regulator since not input is available.}
 For this example the calculation of $K$ is shown in Listing \ref{lst:clff1}.
 The \verb+myacker+ function is a re-implementation of the Matlab \verb+acker+
 function and is given in Appendix \ref{app:myacker}.
-Figure \ref{fig:cl_ex83} shows the response of this system.
+Figure \ref{fig:cl_fonp02} shows the response of this system.
 
 \lstinputlisting[
 	caption={Matlab script to calculate $K$ using Ackermann's formula.},
 	label=lst:clff1,
-]{../control_law/cl_ex83.m}
+]{../control_law/cl_fonp02.m}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{../control_law/cl_ex83}
+\includegraphics[scale=0.7]{../control_law/cl_fonp02}
 \end{center}
 \caption{Response of Control Law designed regulator system
 for two different sets of roots.}
-\label{fig:cl_ex83}
+\label{fig:cl_fonp02}
 \end{figure}
 
 % }}}
@@ -1117,16 +1117,16 @@ for two different sets of roots.}
 	caption={Matlab script to calculate $K$ and
 		estimate $L$ using Ackermann's formula.},
 	label=lst:clpr1,
-]{../control_law/cl_ex85.m}
+]{../control_law/cl_fope01.m}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{../control_law/cl_ex85}
+\includegraphics[scale=0.7]{../control_law/cl_fope01}
 \end{center}
 \caption{Response of Control Law system designed with a full
 order predictor estimator compared to a system with no prediction.
 Initial $x$ has one in first position with zeros elsewhere.}
-\label{fig:cl_ex85}
+\label{fig:cl_fope01}
 \end{figure}
 
 % }}}
