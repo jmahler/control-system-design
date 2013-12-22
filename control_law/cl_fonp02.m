@@ -41,8 +41,8 @@ z2 = [(0.9 + 0.05i) (0.9 - 0.5i) (0.8 + 0.4i) (0.8 - 0.4i)];
 K1 = myacker(Phi, Gamma, z1);
 K2 = myacker(Phi, Gamma, z2);
 % create a gain of K using D and zeroing others
-K1z = ss(zeros(1,1), zeros(1,4), zeros(1,1), K1, T);
-K2z = ss(zeros(1,1), zeros(1,4), zeros(1,1), K2, T);
+K1z = ss(zeros(1,1), zeros(1,n), zeros(1,1), K1, T);
+K2z = ss(zeros(1,1), zeros(1,n), zeros(1,1), K2, T);
 
 % Build system(s)
 X1z  = feedback(Gz, K1z, -1);
